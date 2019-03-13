@@ -138,7 +138,7 @@ STATICFILES_DIRS=(
 # 多媒体文件上传存储路径
 MEDIA_ROOT=os.path.join(BASE_DIR,"static")
 
-MEDIA_URL='/media/'   #用于解析静态文件地址
+# MEDIA_URL='/media/'   #用于解析静态文件地址
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
 

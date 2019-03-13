@@ -6,10 +6,17 @@ from django.http import HttpResponse,HttpResponseRedirect
 
 def login(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
         pwd = request.POST.get('password')
+        username = request.POST.get('username')
         md5_pwd = encryption(pwd)
-
+        print(username,md5_pwd)
+        u=User_message.objects.filter(username=username,password=md5_pwd)
+        if u.exists():
+            request.session['user']=username
+            request.session['id']=u[0].id
+            return HttpResponseRedirect('/')
+        else:
+            return HttpResponse('账号或密码有误。')
     return render(request, 'user/login.html')
 
 
@@ -25,3 +32,11 @@ def register(request):
         userObj.save()
         return HttpResponseRedirect('/users/login')
     return render(request,'user/register.html')
+
+#精选品牌
+def refined(request):
+    return render(request,'main/refined.html')
+
+#全球购
+def go(request):
+    return render(request,'main/go.html')

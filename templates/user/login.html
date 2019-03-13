@@ -25,24 +25,22 @@
 						<div class="co">
 							<div class="from">
 								<form id="" action="{% url 'users:login' %}" method="post">
+                                    {% csrf_token %}
 									<div class="item">
-									<input class="itxt" nam="username" placeholder="已验证手机/邮箱/用户名" value="" >
-									    <div class="err_box">
+                                         <div class="err_box">
                                             <div class="err_msg2" style="display: none;">登录名可能是您的手机号、邮箱或用户名
                                             </div>
                                         </div>
+									    <input class="itxt" name="username" placeholder="已验证手机/邮箱/用户名">
 									</div>
 									<div class="item">
                                         <input class="itxt" placeholder="请输入密码" name="password" id="password" type="password">
-                                        <div class="err_box">
-                                            <div class="err_msg2" style="display: none;">您的密码可能为字母、数字或符号的组合</div>
-                                        </div>
 									</div>
 									<div class="item">
-										<input placeholder="验证码" autocomplete="off" maxlength="4" size="10" name="code" class="itxt itxt_yzm onfocustxt" tabindex="3" type="text">
                                         <div class="err_box">
-                                            <div class="err_msg2" style="display: none;" id="error_captcha">请输入右侧验证码，不区分大小写</div>
+                                            <div class="err_msg2" style="display: block;" id="error_captcha">请输入右侧验证码</div>
                                         </div>
+										<input placeholder="验证码" autocomplete="off" maxlength="4" size="10" name="code" class="itxt itxt_yzm onfocustxt" tabindex="3" type="text">
 									</div>
 									<div class="item item4">
 										<div class="safe ClearFix">
@@ -56,9 +54,9 @@
 										</div>
 									</div>
 									<div class="item">
-										<div class="login-btn">
-                                            <a tabindex="6" id="loginsubmit" class="btn-img btn-entry" href="javascript:;">立即登录</a>
-                                       </div>
+										<button class="login-btn" type="submit">
+                                            <a tabindex="6" id="loginsubmit" class="btn-img btn-entry">立即登录</a>
+                                       </button>
 									</div>
 								</form>
 							</div>

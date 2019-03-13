@@ -3,10 +3,10 @@
 
         {% block title %}
 		<title>快乐购首页</title>
-		<link rel="stylesheet" type="text/css" href="../static/css/head.css"/>
-		<link rel="stylesheet" type="text/css" href="../static/css/index.css"/>
-		<link rel="stylesheet" type="text/css" href="../static/css/footer.css"/>
-		<script src="../static/js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/head.css' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
+		<script src="{% static 'js/jquery-1.7.2.min.js' %}" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			$(function(){
 				//轮播图效果
@@ -18,7 +18,6 @@
 				    if(c==6){
 				    	c=0;
 				    }
-//				    alert(c);
 				    //让自己显示，兄弟元素隐藏
 				    $("#inBaner .big_eye_pic li").eq(c).stop().fadeIn(1800).siblings().fadeOut(800);
 				    //改变颜色
@@ -80,7 +79,7 @@
 		    				<b class="b_down"></b>
 		    			</li>
 		    			<li class="home">
-		    				<a href="index.html" style="color: #C41F3A;">首页</a>
+		    				<a href="/" style="color: #C41F3A;">首页</a>
 		    			</li>
 		    			<li>
 		    				<a href="shop/tpl/refined.html">精选品牌</a>
@@ -266,27 +265,27 @@
 	        		<ul class="big_eye_pic">
 	        			<li style="display: block;">
 	        				<a href="" class="img_box">
-	        					<img src="../static/image/web-101-101-1.jpg"/>
+	        					<img src="{% static '' %}image/web-101-101-1.jpg"/>
 	        				</a>
 	        			</li>
 	        			<li>
 	        				<a href="" class="tpl">
-	        					<img src="../static/image/web-101-101-2.jpg"/>
+	        					<img src="{% static '' %}image/web-101-101-2.jpg"/>
 	        				</a>
 	        			</li>
 	        			<li>
 	        				<a href="" class="tpl">
-	        					<img src="../static/image/web-101-101-3.jpg"/>
+	        					<img src="{% static '' %}image/web-101-101-3.jpg"/>
 	        				</a>
 	        			</li>
 	        			<li>
 	        				<a href="" class="tpl">
-	        					<img src="../static/image/web-101-101-4.jpg"/>
+	        					<img src="{% static '' %}image/web-101-101-4.jpg"/>
 	        				</a>
 	        			</li>
 	        			<li>
 	        				<a href="" class="tpl">
-	        					<img src="../static/image/web-101-101-5.jpg"/>
+	        					<img src="{% static '' %}image/web-101-101-5.jpg"/>
 	        				</a>
 	        			</li>
 	        		</ul>
@@ -329,7 +328,7 @@
 	    	    					<li style="float: left;width: 224px;">
 	    	    						<div class="x">精选服饰</div>
 	    	    						<a href="shop/tpl/iemt.html" class="pro">
-	    	    							<img src="../static/image/top_1.jpg"/>
+	    	    							<img src="{% static '' %}image/top_1.jpg"/>
 	    	    						</a>
 	    	    						<p class="box_glay">
 	    	    							<a href="" class="pro_text">
@@ -352,7 +351,7 @@
 	    	    					<li style="float: left;width: 224px;">
 	    	    						<div class="x">精选服饰</div>
 	    	    						<a href="" class="pro">
-	    	    							<img src="../static/image/top_2.jpg"/>
+	    	    							<img src="{% static '' %}image/top_2.jpg"/>
 	    	    						</a>
 	    	    						<p class="box_glay">
 	    	    							<a href="" class="pro_text">
@@ -375,7 +374,7 @@
 	    	    					<li style="float: left;width: 224px;">
 	    	    						<div class="x">精选服饰</div>
 	    	    						<a href="shop/tpl/iemt.html" class="pro">
-	    	    							<img src="../static/image/top_3.jpg"/>
+	    	    							<img src="{% static '' %}image/top_3.jpg"/>
 	    	    						</a>
 	    	    						<p class="box_glay">
 	    	    							<a href="" class="pro_text">
@@ -398,7 +397,7 @@
 	    	    					<li style="float: left;width: 224px;">
 	    	    						<div class="x">精选服饰</div>
 	    	    						<a href="" class="pro">
-	    	    							<img src="../static/image/top_4.jpg"/>
+	    	    							<img src="{% static '' %}image/top_4.jpg"/>
 	    	    						</a>
 	    	    						<p class="box_glay">
 	    	    							<a href="" class="pro_text">
@@ -421,7 +420,7 @@
 	    	    					<li style="float: left;width: 224px;">
 	    	    						<div class="x">精选服饰</div>
 	    	    						<a href="shop/tpl/iemt.html" class="pro">
-	    	    							<img src="../static/image/top_5.jpg"/>
+	    	    							<img src="{% static '' %}image/top_5.jpg"/>
 	    	    						</a>
 	    	    						<p class="box_glay">
 	    	    							<a href="" class="pro_text">
@@ -454,7 +453,7 @@
 	    	    					<li style="float: left;width: 224px;">
 	    	    						<div class="s">限时抢购</div>
 	    	    						<a href="shop/tpl/iemt.html" class="pro">
-	    	    							<img src="../static/image/top_1.jpg"/>
+	    	    							<img src="{% static '' %}image/top_1.jpg"/>
 	    	    						</a>
 	    	    						<p class="box_glay">
 	    	    							<a href="" class="pro_text">
@@ -477,7 +476,7 @@
 	    	    					<li style="float: left;width: 224px;">
 	    	    						<div class="s">限时抢购</div>
 	    	    						<a href="shop/tpl/iemt.html" class="pro">
-	    	    							<img src="../static/image/top_2.jpg"/>
+	    	    							<img src="{% static '' %}image/top_2.jpg"/>
 	    	    						</a>
 	    	    						<p class="box_glay">
 	    	    							<a href="" class="pro_text">
@@ -500,7 +499,7 @@
 	    	    					<li style="float: left;width: 224px;">
 	    	    						<div class="s">限时抢购</div>
 	    	    						<a href="shop/tpl/iemt.html" class="pro">
-	    	    							<img src="../static/image/top_3.jpg"/>
+	    	    							<img src="{% static '' %}image/top_3.jpg"/>
 	    	    						</a>
 	    	    						<p class="box_glay">
 	    	    							<a href="" class="pro_text">
@@ -523,7 +522,7 @@
 	    	    					<li style="float: left;width: 224px;">
 	    	    						<div class="s">限时抢购</div>
 	    	    						<a href="" class="pro">
-	    	    							<img src="../static/image/top_4.jpg"/>
+	    	    							<img src="{% static '' %}image/top_4.jpg"/>
 	    	    						</a>
 	    	    						<p class="box_glay">
 	    	    							<a href="" class="pro_text">
@@ -546,7 +545,7 @@
 	    	    					<li style="float: left;width: 224px;">
 	    	    						<div class="s">限时抢购</div>
 	    	    						<a href="shop/tpl/iemt.html" class="pro">
-	    	    							<img src="../static/image/top_5.jpg"/>
+	    	    							<img src="{% static '' %}image/top_5.jpg"/>
 	    	    						</a>
 	    	    						<p class="box_glay">
 	    	    							<a href="" class="pro_text">
@@ -589,31 +588,31 @@
 	        	    		<div class="djs_time">
 	        	    			还剩<span>10:50:22</span>
 	        	    		</div>
-	        	    		<a href=""><img src="../static/image/top_2_1.jpg" style="width: 595px;height: 317px;"/></a>
+	        	    		<a href=""><img src="{% static '' %}image/top_2_1.jpg" style="width: 595px;height: 317px;"/></a>
 	        	    	</li>
 	        	    	<li style="margin-right: 0;">
 	        	    		<div class="djs_time">
 	        	    			还剩<span>10:50:22</span>
 	        	    		</div>
-	        	    		<a href=""><img src="../static/image/top_2_2.jpg" style="width: 595px;height: 317px;"/></a>
+	        	    		<a href=""><img src="{% static '' %}image/top_2_2.jpg" style="width: 595px;height: 317px;"/></a>
 	        	    	</li>
 	        	    	<li>
 	        	    		<div class="djs_time">
 	        	    			还剩<span>10:50:22</span>
 	        	    		</div>
-	        	    		<a href=""><img src="../static/image/top_2_3.jpg" style="width: 595px;height: 317px;"/></a>
+	        	    		<a href=""><img src="{% static '' %}image/top_2_3.jpg" style="width: 595px;height: 317px;"/></a>
 	        	    	</li>
 	        	    	<li style="margin-right: 0;">
 	        	    		<div class="djs_time">
 	        	    			还剩<span>10:50:22</span>
 	        	    		</div>
-	        	    		<a href=""><img src="../static/image/top_2_4.jpg" style="width: 595px;height: 317px;"/></a>
+	        	    		<a href=""><img src="{% static '' %}image/top_2_4.jpg" style="width: 595px;height: 317px;"/></a>
 	        	    	</li>
 	        	    	<li>
 	        	    		<div class="djs_time">
 	        	    			还剩<span>10:50:22</span>
 	        	    		</div>
-	        	    		<a href=""><img src="../static/image/top_2_5.jpg" style="width: 595px;height: 317px;"/></a>
+	        	    		<a href=""><img src="{% static '' %}image/top_2_5.jpg" style="width: 595px;height: 317px;"/></a>
 	        	    	</li>
 	        	    </ul>
 	        	</div>
@@ -629,7 +628,7 @@
 	        	</div>
 	        	<ul class="jinpin_ul">
 	        		<li>
-	        			<a href=""><img src="../static/image/jinpin_1.png"/></a>
+	        			<a href=""><img src="{% static '' %}image/jinpin_1.png"/></a>
 	        			<a href="shop/tpl/go.html" target="_blank" class="ppsx_tc">
                             <div class="ppsx_tc_xx">
                                 <div class="ppsx_tc_xx1">
@@ -640,7 +639,7 @@
                         </a>
 	        		</li>
 	        		<li>
-	        			<a href=""><img src="../static/image/jinpin_2.png"/></a>
+	        			<a href=""><img src="{% static '' %}image/jinpin_2.png"/></a>
 	        			<a href="shop/tpl/go.html" target="_blank" class="ppsx_tc">
                             <div class="ppsx_tc_xx">
                                 <div class="ppsx_tc_xx1">
@@ -651,7 +650,7 @@
                         </a>
 	        		</li>
 	        		<li>
-	        			<a href=""><img src="../static/image/jinpin_3.png"/></a>
+	        			<a href=""><img src="{% static '' %}image/jinpin_3.png"/></a>
 	        			<a href="shop/tpl/go.html" target="_blank" class="ppsx_tc">
                             <div class="ppsx_tc_xx">
                                 <div class="ppsx_tc_xx1">
@@ -662,7 +661,7 @@
                         </a>
 	        		</li>
 	        		<li>
-	        			<a href=""><img src="../static/image/jinpin_4.png"/></a>
+	        			<a href=""><img src="{% static '' %}image/jinpin_4.png"/></a>
 	        			<a href="shop/tpl/go.html" target="_blank" class="ppsx_tc">
                             <div class="ppsx_tc_xx">
                                 <div class="ppsx_tc_xx1">
@@ -686,7 +685,7 @@
 	        	<ul class="day_goods">
 	        		<li>
 	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="../static/image/day_1.jpg"/></p>
+	        				<p class="p_img"><img src="{% static '' %}image/day_1.jpg"/></p>
 	        			</a>
 	        			<p class="p_title">
 	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
@@ -699,7 +698,7 @@
 	        		</li>
 	        		<li>
 	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="../static/image/day_2.jpg"/></p>
+	        				<p class="p_img"><img src="{% static '' %}image/day_2.jpg"/></p>
 	        			</a>
 	        			<p class="p_title">
 	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
@@ -712,7 +711,7 @@
 	        		</li>
 	        		<li>
 	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="../static/image/day_3.jpg"/></p>
+	        				<p class="p_img"><img src="{% static '' %}image/day_3.jpg"/></p>
 	        			</a>
 	        			<p class="p_title">
 	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
@@ -725,7 +724,7 @@
 	        		</li>
 	        		<li>
 	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="../static/image/day_4.jpg"/></p>
+	        				<p class="p_img"><img src="{% static '' %}image/day_4.jpg"/></p>
 	        			</a>
 	        			<p class="p_title">
 	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
@@ -738,7 +737,7 @@
 	        		</li>
 	        		<li>
 	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="../static/image/day_5.jpg"/></p>
+	        				<p class="p_img"><img src="{% static '' %}image/day_5.jpg"/></p>
 	        			</a>
 	        			<p class="p_title">
 	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
@@ -751,7 +750,7 @@
 	        		</li>
 	        		<li>
 	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="../static/image/day_6.jpg"/></p>
+	        				<p class="p_img"><img src="{% static '' %}image/day_6.jpg"/></p>
 	        			</a>
 	        			<p class="p_title">
 	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
@@ -764,7 +763,7 @@
 	        		</li>
 	        		<li>
 	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="../static/image/day_7.jpg"/></p>
+	        				<p class="p_img"><img src="{% static '' %}image/day_7.jpg"/></p>
 	        			</a>
 	        			<p class="p_title">
 	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
@@ -777,7 +776,7 @@
 	        		</li>
 	        		<li>
 	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="../static/image/day_8.jpg"/></p>
+	        				<p class="p_img"><img src="{% static '' %}image/day_8.jpg"/></p>
 	        			</a>
 	        			<p class="p_title">
 	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
@@ -790,7 +789,7 @@
 	        		</li>
 	        		<li>
 	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="../static/image/day_9.jpg"/></p>
+	        				<p class="p_img"><img src="{% static '' %}image/day_9.jpg"/></p>
 	        			</a>
 	        			<p class="p_title">
 	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
@@ -803,7 +802,7 @@
 	        		</li>
 	        		<li>
 	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="../static/image/day_10.jpg"/></p>
+	        				<p class="p_img"><img src="{% static '' %}image/day_10.jpg"/></p>
 	        			</a>
 	        			<p class="p_title">
 	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
@@ -816,7 +815,7 @@
 	        		</li>
 	        		<li>
 	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="../static/image/day_11.jpg"/></p>
+	        				<p class="p_img"><img src="{% static '' %}image/day_11.jpg"/></p>
 	        			</a>
 	        			<p class="p_title">
 	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
@@ -829,7 +828,7 @@
 	        		</li>
 	        		<li>
 	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="../static/image/day_12.jpg"/></p>
+	        				<p class="p_img"><img src="{% static '' %}image/day_12.jpg"/></p>
 	        			</a>
 	        			<p class="p_title">
 	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
@@ -848,7 +847,7 @@
 	    <!--下拉搜索-->
 	    <div id="nav" class="search_fixed">
 	    	<div class="w1200">
-	    		<div class="s_fixed_l"><img src="../static/image/search_logo.png"/></div>
+	    		<div class="s_fixed_l"><img src="{% static '' %}image/search_logo.png"/></div>
 	    		<div class="s_fixed_r">
 	    			<form action="" method="post">
                         <input placeholder="lumi 胶原蛋白" autocomplete="off" class="txt_f_sb" name="keyword" type="text">
@@ -895,7 +894,7 @@
 	        		<div class="ewm_tc">
                     <div class="ewm_tc_bg">
                         <div class="down_app_icon"></div>
-                        <img src="../static/image/down_app_ewm.png">
+                        <img src="{% static '' %}image/down_app_ewm.png">
                     </div>
 	        		</div>
 	        	</div>
