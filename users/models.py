@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 #用户信息表
-class User_message(models.Model):
+class User(models.Model):
     class Meta:
         verbose_name = '买家信息'
         verbose_name_plural = '买家信息'

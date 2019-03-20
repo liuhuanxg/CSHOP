@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from CSHOP.md5 import encryption
-from .models import User_message
+from .models import User
 from django.http import HttpResponse,HttpResponseRedirect
 # Create your views here.
 
@@ -10,7 +10,7 @@ def login(request):
         username = request.POST.get('username')
         md5_pwd = encryption(pwd)
         print(username,md5_pwd)
-        u=User_message.objects.filter(username=username,password=md5_pwd)
+        u=User.objects.filter(username=username,password=md5_pwd)
         if u.exists():
             request.session['user']=username
             request.session['id']=u[0].id
@@ -26,7 +26,7 @@ def register(request):
         pwd=request.POST.get('password')
         md5_pwd=encryption(pwd)
         #存入数据库
-        userObj=User_message()
+        userObj=User()
         userObj.username=username
         userObj.password=md5_pwd
         userObj.save()
