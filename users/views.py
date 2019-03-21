@@ -25,7 +25,6 @@ def register(request):
         username=request.POST.get('username')
         pwd=request.POST.get('password')
         md5_pwd=encryption(pwd)
-        #存入数据库
         userObj=User()
         userObj.username=username
         userObj.password=md5_pwd
