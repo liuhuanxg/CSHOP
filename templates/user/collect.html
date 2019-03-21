@@ -1,0 +1,26 @@
+{% extends 'base/user_base/user_base.html' %}
+{% load static %}
+
+{% block title %}
+		<title>我的收藏</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/head.css' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/suercenter.css' %}"/>
+{% endblock %}
+	{% block content %}
+		<div class="w1000 ClearFix margin_top20">
+			{% include 'base/user_base/user_left.html' %}
+			<div class="ur_right ClearFix">
+				<!--uer_top-->
+				<div class="ur_location">
+					<a href="">我的快乐购</a>
+					<span>&gt;</span>
+					<a class="a_cur">我的收藏</a>
+				</div>
+				<!--uer_top-->
+				<div class="no_data"><img src="{% static 'image/no_data.png' %}"><span>您还没有收藏任何商品!</span></div>
+			</div>
+	    </div>
+	    <!--底部end-->
+
+{% endblock %}

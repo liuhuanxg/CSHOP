@@ -10,4 +10,5 @@ urlpatterns = [
     path('truesubmit/',views.truesubmit,name='truesubmit'),
     path('usercenter/',views.usercenter,name='usercenter'),
     path('add_path/',views.add_path,name='add_path'),
+    path('collect/',views.collect,name='collect'),
 ]

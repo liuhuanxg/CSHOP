@@ -48,3 +48,6 @@ def usercenter(request):
 
 def add_path(request):
     return render(request,'user/newPath.html')
+
+def collect(request):
+    return render(request,'user/collect.html')
