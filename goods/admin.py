@@ -1,13 +1,20 @@
 from django.contrib import admin
-from .models import GoodsInfo,GoodsType
+from .models import GoodsInfo,GoodsType,BigType
 from django import forms
 
-
+@admin.register(BigType)
+class BigTypeAdmin(admin.ModelAdmin):
+    list_display = ('id','name','create_time')
+    search_fields = ('name',)
+    date_hierarchy = 'create_time'
+    list_per_page = 50
 
 @admin.register(GoodsType)
 class GoodsTypeAdmin(admin.ModelAdmin):
-    list_display = ('id','type_name')
-    search_fields = ('type_name',)
+    list_display = ('id','type_name','type','create_time')
+    date_hierarchy = 'create_time'
+    search_fields = ('type_name','type')
+    ordering = ('-create_time',)
     list_per_page = 50
 
 

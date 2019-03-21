@@ -9,4 +9,5 @@ urlpatterns = [
     path('car_path/',views.car_path,name='car_path'),
     path('truesubmit/',views.truesubmit,name='truesubmit'),
     path('usercenter/',views.usercenter,name='usercenter'),
+    path('add_path/',views.add_path,name='add_path'),
 ]

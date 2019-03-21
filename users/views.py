@@ -46,3 +46,5 @@ def truesubmit(request):
 def usercenter(request):
     return render(request,'user/usercenter.html')
 
+def add_path(request):
+    return render(request,'user/newPath.html')

@@ -1,12 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+#主类
+class BigType(models.Model):
+    class Meta:
+        verbose_name = '商品大类'
+        verbose_name_plural = '商品大类'
+    name = models.CharField(max_length=50, verbose_name='大类名称')
+    create_time=models.DateField('创建时间',auto_now_add=True)
+    def __str__(self):
+        return self.name
 # 商品分类表
 class GoodsType(models.Model):
     class Meta:
-        verbose_name='商品分类'
-        verbose_name_plural='商品分类'
-    type_name=models.CharField(max_length=50,verbose_name='类型名称')
+        verbose_name='商品小类'
+        verbose_name_plural='商品小类'
+    type_name=models.CharField(max_length=50,verbose_name='小类名称')
+    type=models.ForeignKey(BigType,verbose_name='关联大类',default=1,on_delete=models.DO_NOTHING)
+    create_time = models.DateField('创建时间', auto_now_add=True)
     def __str__(self):
         return self.type_name
 
