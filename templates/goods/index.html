@@ -264,25 +264,30 @@
 	        		</div>
 	        	</div>
 	        	<ul class="day_goods">
+                    {% for goods in goods_list %}
 	        		<li>
-	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="{% static '' %}image/day_1.jpg"/></p>
+                        <a href="" class="a_con_list">
+	        				<p class="p_img"><img src="{% static goods.goods_pic.url %}"/></p>
 	        			</a>
 	        			<p class="p_title">
-	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
+	        				<span>
+                            【{% widthratio goods.xprice goods.oprice 100 as width %}
+                                {% widthratio width 10 1 as width %}
+                                {{ width |floatformat:1 }}折】
+                            </span>{{ goods.goods_name }}
 	        			</p>
 	        			<p class="p_p">
-	        				<span class="price1">￥<span>298.00</span></span>
-	        				<span class="price2"><del>￥398.00</del></span>
+	        				<span class="price1">￥<span>{{ goods.xprice }}</span></span>
+	        				<span class="price2"><del>￥{{ goods.oprice }}</del></span>
 	        				<a href="" class="gwc"></a>
 	        			</p>
 	        		</li>
+                    {% endfor %}
 	        	</ul>
 	        </div>
-	        <!--第四区-->
+
 	    </div>
-	    <!--商品区-->
-	    <!--下拉搜索-->
+
 	    <div id="nav" class="search_fixed">
 	    	<div class="w1200">
 	    		<div class="s_fixed_l"><img src="{% static 'image/search_logo.png' %}"/></div>
@@ -294,7 +299,7 @@
 	    		</div>
 	    	</div>
 	    </div>
-	    <!--下拉搜索end-->
+
 {% endblock %}
 
 {% block left %}

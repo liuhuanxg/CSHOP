@@ -11,4 +11,4 @@ class User(models.Model):
     password=models.CharField('密码',max_length=32)
     is_activate = models.BooleanField('能否登录',default=1)
     def __str__(self):
-        self.username
+        return  self.username
