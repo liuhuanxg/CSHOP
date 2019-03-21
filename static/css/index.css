@@ -157,7 +157,7 @@ ul li{
     background-position: -236px -127px;
 }
 .current .jx_icon_down {
-    background: url("../image/icon_list.png") no-repeat scroll -1px -769px;
+    background: url("./../image/icon_list.png") no-repeat scroll -1px -769px;
     bottom: -10px;
     height: 11px;
     left: 88px;
@@ -165,7 +165,7 @@ ul li{
     width: 19px;
 }
 .yestoday_icon {
-    background: url("../image/icon_list.png") repeat scroll -174px -239px;
+    background: url("./../image/icon_list.png") repeat scroll -174px -239px;
     display: inline-block;
     height: 26px;
     margin-right: 5px;
@@ -220,7 +220,7 @@ ul li{
     z-index: 9;
 }
 .time_icon {
-    background: url("../image/icon_list.png") repeat scroll -168px -305px;
+    background: url("./../image/icon_list.png") repeat scroll -168px -305px;
     display: block;
     float: left;
     height: 23px;
@@ -313,7 +313,7 @@ ul li{
 }
 /**/
 .qinha_title {
-    background: url("../image/h2_bg.jpg") no-repeat scroll center center;
+    background: url("./../image/h2_bg.jpg") no-repeat scroll center center;
     height: 71px;
     float: left;
     width: 1200px;
@@ -389,7 +389,7 @@ ul li{
 		display: block;
 }
 .ppsx_tc {
-    background: url("../image/tm_bg.png") repeat scroll 0 0;
+    background: url("./../image/tm_bg.png") repeat scroll 0 0;
     height: 235px;
     left: 0;
     position: absolute;
@@ -503,7 +503,7 @@ ul li{
     float: right;
     width: 50px;
     height: 50px;
-    background: url("../image/icon_list.png") repeat scroll 0 -66px;
+    background: url("./../image/icon_list.png") repeat scroll 0 -66px;
     cursor: pointer;
 }
 /**
