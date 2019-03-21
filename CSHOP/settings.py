@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'home.apps.HomeConfig',
     'seller.apps.SellerConfig',
+    'goods.apps.GoodsConfig',
 ]
 
 MIDDLEWARE = [

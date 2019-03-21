@@ -8,37 +8,34 @@
 {% endblock %}
 
 {% block body %}
-		<div class="header">
-		    {% include 'base/user_base/header_top.html' %}
+<div class="header">
+	{% include 'base/user_base/header_top.html' %}
 			<!--图片-->
-			<div class="full_sc order_bottom">
-				<div class="w1200 header_conter ">
-					<div class="h_c_logo">
-						<a href="/">
-							<img src="{% static 'image/logo.jpg' %}" />
-						</a>
-					</div>
-					<div class="h_c_right">
-						<div class="order_Status os_oredr"></div>
-					</div>
-				</div>
+	<div class="full_sc order_bottom">
+		<div class="w1200 header_conter ">
+			<div class="h_c_logo">
+				<a href="/"><img src="{% static 'image/logo.jpg' %}" /></a>
 			</div>
-			<!--end-->
+			<div class="h_c_right">
+				<div class="order_Status os_oredr"></div>
+			</div>
 		</div>
-		<div class="public_b">
-			<form action="" method="post">
-				<div class="w1200">
-					<div class="h2">确认订单信息</div>
-					<!--地址选择-->
-					<div class="o_o_content">
-						<h2 class="part_h2">
-							1 地址选择
-							<span class="addr_errtips">
-								<i class="icon_err"></i>
-								您好！此地址不在该商品配送区域范围内，请选择其他收货地址！
-							</span>
-						</h2>
-						<div class="new_addr">
+	</div>
+			<!--end-->
+</div>
+<div class="public_b">
+	<form action="" method="post">
+		<div class="w1200">
+			<div class="h2">确认订单信息</div>
+				<div class="o_o_content">
+					<h2 class="part_h2">
+                        1 地址选择
+                        <span class="addr_errtips">
+                            <i class="icon_err"></i>
+                            您好！此地址不在该商品配送区域范围内，请选择其他收货地址！
+                        </span>
+                    </h2>
+                    <div class="new_addr">
 							<div class="ncc-form-default">
 								<form action="" method="post">
 
@@ -132,7 +129,7 @@
 								</form>
 							</div>
 						</div>
-						<div style="display: none;" class="addr_list" id="addr_list">
+                    <div style="display: none;" class="addr_list" id="addr_list">
 							<ul>
 								<li class="addr_new">
 									<div class="btn_new_addr" nc_type="addr" id="add_addr">添加新地址</div>
@@ -140,8 +137,8 @@
 							</ul>
 						</div>
 						<!--支付方式-->
-						<div class="o_o_part o_o_part2">
-							<h2 class="part_h2">2 支付方式</h2>
+                    <div class="o_o_part o_o_part2">
+                        <h2 class="part_h2">2 支付方式</h2>
 							<div class="pay_type">
 								<ul>
 									<li class="on" payment_code="online">
@@ -155,7 +152,7 @@
 						</div>
 						<!--支付方式-->
 						<!--商品-->
-						<div class="o_o_part o_o_part3">
+                    <div class="o_o_part o_o_part3">
 							<h2 class="part_h2">3&nbsp;商品清单<a class="a_return_car" href=""> &lt; 返回购物车</a></h2>
 							<div class="oder_shop">
 								<!--shoptitle-->
@@ -276,16 +273,16 @@
 								<div class="btnsure_bg">
 									<div class="sureorder">
 										<div class="jine">应付总额：<span class="fwxh_30">￥</span><span class="span_m s_order_money">199</span></div>
-										<a class="un_btn_sure" id="btn_sure" href="javascript:void(0);">提交订单</a>
+										<a class="un_btn_sure" id="btn_sure" href="{% url 'users:truesubmit' %}">提交订单</a>
 									</div>
 								</div>
 							</div>
 						</div>
 						<!--商品-->
-					</div>
+                </div>
 					<!--地址选择end-->
-				</div>
-			</form>
-		</div>
-	  {% include 'base/user_base/footer.html' %}
+        </div>
+	</form>
+</div>
+{% include 'base/user_base/footer.html' %}
 {% endblock %}
