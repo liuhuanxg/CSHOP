@@ -1,0 +1,72 @@
+{% extends 'base/user_base/user_base.html' %}
+{% load static %}
+
+{% block title %}
+		<title>我的快乐购</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/head.css' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/suercenter.css' %}"/>
+{% endblock %}
+
+{% block content %}
+<div class="w1000 ClearFix margin_top20">
+		{% include 'base/user_base/user_left.html' %}
+			<!--右侧top-->
+			<div class="ur_right">
+				<div class="uc_top ClearFix">
+					<div class="uc_t_l">                         
+	                    <a href="" class="p_big">个人中心</a>                         
+                        <p class="p_small">您好，欢迎来到快乐购</p>
+                    </div>
+                    <div class="uc_t_m">
+                    	<div class="m_img">
+                    		<div class="hg_box">
+                    			<img src="{% static 'image/hg_img_0.png' %}"/>
+                    		</div>
+                    		<img src="{% static 'image/user_center_img4.jpg' %}"/>
+                    	</div>
+                    	<div class="m_user_info">
+                    		<div class="m_name" title="WEB9B9CE1E0D4">WEB9B9CE1E0D4</div>
+                    		<div class="m_grade"><span>注册会员</span></div>
+                    		<div class="m_jf_yhj">
+                    			<a href="">可用积分<span id="use_saveamt_num">100</span>分</a>
+			                    <span class="l"></span>                                 
+			                    <a class="" href="">可用优惠券<span id="voucher_count">6</span>张</a>
+                    		</div>
+                    	</div>
+                    </div>
+				    <div class="uc_t_r">
+				    	<p><span class="p_l">注册时间：</span>2016-05-22</p>
+    		            <p><span class="p_l">上次登录时间：</span>2016-05-24 14:39:06</p>
+				    </div>
+				</div>
+			    <div class="uc_c_right">
+			    	<div class="order_tips">
+			    		<span class="o_t_h2">订单提醒：</span>
+                        <ul>
+                            <li>
+                            	<a href="">未支付订单<span id="order_nopay_count">(0)</span></a>
+                            </li>
+                            <li>
+                            	<a href="">未确认收货<span id="order_nopay_count">(0)</span></a>
+                            </li>
+                            <li class="li_last">
+                                <a href="">未评价订单<span id="order_noeval_count">(0)</span></a>
+                                <div class="pl_tips">评价一个商品最多可获得500积分</div>
+                            </li>
+                        </ul>
+			    	</div>
+			    	<div class="seufe">
+			    		<div class="d_h2"><h2><span></span>我的收藏</h2></div>
+			    		<div class="detail_l_con4">
+			    			<div class="no_data"><img src="{% static 'image/no_data.png' %}"><span>您还没有收藏任何商品!</span></div>
+			    		</div>
+			    	</div>
+			    </div>
+			</div>
+			<!--右侧top-->
+		</div>
+{% endblock %}
+
+
+

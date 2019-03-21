@@ -51,3 +51,12 @@ def add_path(request):
 
 def collect(request):
     return render(request,'user/collect.html')
+
+def userindex(request):
+    return render(request,'user/userindex.html')
+
+def change_message(request):
+    return render(request,'user/change_message.html')
+
+def userrefund(request):
+    return render(request,'user/userrefund.html')

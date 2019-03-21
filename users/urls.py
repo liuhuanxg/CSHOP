@@ -11,4 +11,7 @@ urlpatterns = [
     path('usercenter/',views.usercenter,name='usercenter'),
     path('add_path/',views.add_path,name='add_path'),
     path('collect/',views.collect,name='collect'),
+    path('userindex/',views.userindex,name='userindex'),
+    path('change_message/',views.change_message,name='change_message'),
+    path('userrefund/',views.userrefund,name='userrefund'),
 ]
