@@ -1,0 +1,343 @@
+{% extends 'base/user_base/user_base.html' %}
+{% load static %}
+{% block title %}
+		<title>分类页面</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/head.css' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/list.css' %}"/>
+{% endblock %}
+
+{% block content %}
+	    <div class="w1200">
+	    	<!--分类导航-->
+	    	<div class="top_nv">
+	    		<span><a href="/">首页</a></span>
+	    		<span>></span>
+	    		<span><a href="/">测试</a></span>
+	    		<span>></span>
+	    		<span><a href="/">护肤品</a></span>
+	    	</div>
+	    	<!--分类导航-->
+	    	<div class="box_list">
+	    		<div class="sl_list">
+	    			<ul>
+	    				<li>
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static 'image/shop_1.jpg' %}"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li>
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static 'image/shop_2.jpg' %}"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li>
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static 'image/shop_3.jpg' %}"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li class="no-margin">
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static 'image/shop_4.jpg' %}"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li><a href="">
+	    						<span class="list_img"><img src="{% static 'image/shop_5.jpg' %}"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a></li>
+	    				<li>
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static '' %}image/shop_6.jpg"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li>
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static '' %}image/shop_7.jpg"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li class="no-margin">
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static '' %}image/shop_8.jpg"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li>
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static '' %}image/shop_9.jpg"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li>
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static '' %}image/shop_11.jpg"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li>
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static '' %}image/shop_11.jpg"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li class="no-margin">
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static '' %}image/shop_12.jpg"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li>
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static '' %}image/shop_1.jpg"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li>
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static '' %}image/shop_2.jpg"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li>
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static '' %}image/shop_3.jpg"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li class="no-margin">
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static '' %}image/shop_4.jpg"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li><a href="">
+	    						<span class="list_img"><img src="{% static '' %}image/shop_5.jpg"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a></li>
+	    				<li>
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static '' %}image/shop_6.jpg"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li>
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static '' %}image/shop_7.jpg"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li class="no-margin">
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static '' %}image/shop_8.jpg"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li>
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static '' %}image/shop_9.jpg"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li>
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static '' %}image/shop_11.jpg"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li>
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static '' %}image/shop_11.jpg"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    				<li class="no-margin">
+	    					<a href="">
+	    						<span class="list_img"><img src="{% static '' %}image/shop_12.jpg"/></span>
+	    						<span class="sl_list_con">
+	    							<span class="sl_price">
+	    								<b class="sl_price1"><span>¥1080.00 </span></b>
+	    								<b class="sl_price2"><s>¥1280.00 </s></b>
+	    							</span>
+	    						</span>
+	    						<span class="sl_title">WEI EAST皙白密集修复焕颜精华组</span>
+	    					</a>
+	    				</li>
+	    			</ul>
+	    		</div>
+	    	</div>
+	        <!--分页-->
+	        <div class="page_list">
+	          	<div class="page_r">
+	           		<ul>
+	           			<li class="pre a_btn un">
+	           				<span><b><</b>上一页</span>
+	           			</li>
+	           			<li class="a_p_num">
+	           				<span>1</span>
+	           			</li>
+	           			<li>
+	           				<a href=""><span>2</span></a>
+	           			</li>
+	           			<li>
+	           				<a href=""><span>3</span></a>
+	           			</li>
+	           			<li>
+	            			<span class="more">...</span>
+	           			</li>
+	           			<li class="next a_btn">
+	           				<a href=""><span>下一页<b>></b></span></a>
+	           			</li>
+	           		</ul>
+	           	</div>
+	        </div>
+	        <!--分页end-->
+	    </div>
+{% endblock %}
+
+
+{% block left %}
+	   {% include 'base/user_base/left_fixed.html' %}
+{% endblock %}

@@ -40,3 +40,16 @@ def refined(request):
 #全球购
 def go(request):
     return render(request,'main/go.html')
+
+#品牌馆
+def brand(request):
+    return render(request,'main/brand.html')
+
+def list(request):
+    return render(request,'main/list.html')
+
+def car(request):
+    return render(request,'user/car.html')
+
+def car_path(request):
+    return render(request, 'user/car_path.html')

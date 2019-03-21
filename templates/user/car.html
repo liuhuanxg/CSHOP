@@ -1,0 +1,57 @@
+{% extends 'base/user_base/base.html' %}
+{% load static %}
+{% block title %}
+		<title>提交订单-没有物品时</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/head.css' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/go.css' %}"/>
+{% endblock %}
+{% block body %}
+		<div class="header">
+			{% include 'base/user_base/header_top.html' %}
+			<!--图片-->
+			<div class="full_sc order_bottom">
+				<div class="w1200 header_conter ">
+					<div class="h_c_logo">
+	    			    <a href="/">
+	    				    <img src="{% static 'image/logo.jpg' %}"/>
+	    			    </a>
+	    		    </div>
+	    		    <div class="h_c_right">
+	    		    	<div class="order_Status"></div>
+	    		    </div>
+				</div>
+			</div>
+			<!--end-->
+		</div>
+		<!--tip-->
+		<div class="public_b">
+			<div class="w1200">
+				<div class="car_no_goods">
+					<img src="{% static 'image/car_no_goods.jpg' %}"/>
+					<div class="no_goods">
+						<p class="no_goods_t">亲，您的购物车空空如也，快去抢购心仪商品吧~</p>
+						<p><a href="{% url 'users:car_path' %}" class="no_goods_buy">立即购买</a></p>
+					</div>
+				</div>
+				<!--为你推荐-->
+				<div class="guesslike_div">
+					<div class="remat">
+						<div class="d_h2">
+							<ul>
+                                <li class="on">猜你喜欢</li>
+                            </ul>
+						</div>
+						<div class="detail_l_con4">
+							<div class="noguess">暂无商品向您推荐</div>
+						</div>
+					</div>
+				</div>
+				<!--为你推荐-->
+			</div>
+		</div>
+		<!--tipend-->
+		<!--底部公用-->
+	   {% include 'base/user_base/footer.html' %}
+	    <!--底部end-->
+{% endblock %}
