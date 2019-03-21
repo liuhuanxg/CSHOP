@@ -5,13 +5,8 @@ app_name ='users'
 urlpatterns = [
     path('login/',views.login,name='login'),
     path('register/',views.register,name='register'),
-    path('go/',views.go,name='go'),
-    path('refined/',views.refined,name='refined'),
-    path('brand/',views.brand,name='brand'),
-    path('list/',views.list,name='list'),
     path('car/',views.car,name='car'),
     path('car_path/',views.car_path,name='car_path'),
     path('truesubmit/',views.truesubmit,name='truesubmit'),
     path('usercenter/',views.usercenter,name='usercenter'),
-    path('goods_detail/<int:id>',views.goods_detail,name='goods_detail'),
 ]
