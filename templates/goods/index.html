@@ -46,7 +46,7 @@
 					$(".her_menu li").eq(n).addClass("current").siblings().removeClass("current");
 					//切换商品
 					$(".her_top .pro_con").eq(n).show().siblings(".pro_con").hide();
-				})
+				});
 				//搜索框下滑
 				$(window).scroll(function(){
 					//获得滚动条距离顶部距离
@@ -68,19 +68,20 @@
 	        <!--菜单-->
 	    	<div class="index_type">
 	    		<ul class="index_type_ul">
-	    			<li>
-                        <span>个护美妆<b>></b></span>
+                    {% for big_type in big_type_list %}
+                        <li>
+                        <span>{{ big_type.name }}<b>></b></span>
                         <div class="nav_type_list" data="1">
                             <ul>
-                                <li><a href="{% url 'goods:list' %}" target="_blank">面部护肤</a></li>
-                                <li><a href="{% url 'goods:list' %}" target="_blank">洗发护发</a></li>
-                                <li><a href="{% url 'goods:list' %}" target="_blank">身体护理</a></li>
-                                <li><a href="{% url 'goods:list' %}" target="_blank">口腔护理</a></li>
-                                <li><a href="{% url 'goods:list' %}" target="_blank">女性个护</a></li>
-                                <li><a href="{% url 'goods:list' %}" target="_blank">香水彩妆</a></li>
+                                {% for type in type_list %}
+                                    {% if type.type_id == big_type.id %}
+                                <li><a href="{% url 'goods:list' type.id %}" target="_blank">{{ type.type_name }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
                             </ul>
                         </div>
 	    			</li>
+                    {% endfor %}
 	    		</ul>
 	    	</div>
 
@@ -152,100 +153,8 @@
 	    	    				<ul class="groUlOut">
 	    	    					<li style="float: left;width: 224px;">
 	    	    						<div class="x">精选服饰</div>
-	    	    						<a href="shop/tpl/iemt.html" class="pro">
+	    	    						<a href="{% url 'goods:goods_detail' 1 %}" class="pro">
 	    	    							<img src="{% static '' %}image/top_1.jpg"/>
-	    	    						</a>
-	    	    						<p class="box_glay">
-	    	    							<a href="" class="pro_text">
-	    	    								<span>意大利TVS进口磐石锅具套组</span>
-	    	    							</a>
-	    	    						</p>
-	    	    						<p class="p_num">
-	    	    							No.9195763
-	    	    						</p>
-	    	    						<div class="now_price">
-	    	    							<div class="price">
-	    	    								<span class="bigfont">
-	    	    									<span class="f_14">￥</span><span>999.00</span>
-	    	    								</span>
-	    	    								<span><del>￥2100.00</del></span>
-	    	    								<div class="zk">4.8折</div>
-	    	    							</div>
-	    	    						</div>
-	    	    					</li>
-	    	    					<li style="float: left;width: 224px;">
-	    	    						<div class="x">精选服饰</div>
-	    	    						<a href="" class="pro">
-	    	    							<img src="{% static '' %}image/top_2.jpg"/>
-	    	    						</a>
-	    	    						<p class="box_glay">
-	    	    							<a href="" class="pro_text">
-	    	    								<span>意大利TVS进口磐石锅具套组</span>
-	    	    							</a>
-	    	    						</p>
-	    	    						<p class="p_num">
-	    	    							No.9195763
-	    	    						</p>
-	    	    						<div class="now_price">
-	    	    							<div class="price">
-	    	    								<span class="bigfont">
-	    	    									<span class="f_14">￥</span><span>999.00</span>
-	    	    								</span>
-	    	    								<span><del>￥2100.00</del></span>
-	    	    								<div class="zk">4.8折</div>
-	    	    							</div>
-	    	    						</div>
-	    	    					</li>
-	    	    					<li style="float: left;width: 224px;">
-	    	    						<div class="x">精选服饰</div>
-	    	    						<a href="shop/tpl/iemt.html" class="pro">
-	    	    							<img src="{% static '' %}image/top_3.jpg"/>
-	    	    						</a>
-	    	    						<p class="box_glay">
-	    	    							<a href="" class="pro_text">
-	    	    								<span>意大利TVS进口磐石锅具套组</span>
-	    	    							</a>
-	    	    						</p>
-	    	    						<p class="p_num">
-	    	    							No.9195763
-	    	    						</p>
-	    	    						<div class="now_price">
-	    	    							<div class="price">
-	    	    								<span class="bigfont">
-	    	    									<span class="f_14">￥</span><span>999.00</span>
-	    	    								</span>
-	    	    								<span><del>￥2100.00</del></span>
-	    	    								<div class="zk">4.8折</div>
-	    	    							</div>
-	    	    						</div>
-	    	    					</li>
-	    	    					<li style="float: left;width: 224px;">
-	    	    						<div class="x">精选服饰</div>
-	    	    						<a href="" class="pro">
-	    	    							<img src="{% static '' %}image/top_4.jpg"/>
-	    	    						</a>
-	    	    						<p class="box_glay">
-	    	    							<a href="" class="pro_text">
-	    	    								<span>意大利TVS进口磐石锅具套组</span>
-	    	    							</a>
-	    	    						</p>
-	    	    						<p class="p_num">
-	    	    							No.9195763
-	    	    						</p>
-	    	    						<div class="now_price">
-	    	    							<div class="price">
-	    	    								<span class="bigfont">
-	    	    									<span class="f_14">￥</span><span>999.00</span>
-	    	    								</span>
-	    	    								<span><del>￥2100.00</del></span>
-	    	    								<div class="zk">4.8折</div>
-	    	    							</div>
-	    	    						</div>
-	    	    					</li>
-	    	    					<li style="float: left;width: 224px;">
-	    	    						<div class="x">精选服饰</div>
-	    	    						<a href="shop/tpl/iemt.html" class="pro">
-	    	    							<img src="{% static '' %}image/top_5.jpg"/>
 	    	    						</a>
 	    	    						<p class="box_glay">
 	    	    							<a href="" class="pro_text">
@@ -298,98 +207,6 @@
 	    	    							</div>
 	    	    						</div>
 	    	    					</li>
-	    	    					<li style="float: left;width: 224px;">
-	    	    						<div class="s">限时抢购</div>
-	    	    						<a href="shop/tpl/iemt.html" class="pro">
-	    	    							<img src="{% static '' %}image/top_2.jpg"/>
-	    	    						</a>
-	    	    						<p class="box_glay">
-	    	    							<a href="" class="pro_text">
-	    	    								<span>意大利TVS进口磐石锅具套组</span>
-	    	    							</a>
-	    	    						</p>
-	    	    						<p class="p_num">
-	    	    							No.9195763
-	    	    						</p>
-	    	    						<div class="now_price">
-	    	    							<div class="price">
-	    	    								<span class="bigfont">
-	    	    									<span class="f_14">￥</span><span>999.00</span>
-	    	    								</span>
-	    	    								<span><del>￥2100.00</del></span>
-	    	    								<div class="zk">4.8折</div>
-	    	    							</div>
-	    	    						</div>
-	    	    					</li>
-	    	    					<li style="float: left;width: 224px;">
-	    	    						<div class="s">限时抢购</div>
-	    	    						<a href="shop/tpl/iemt.html" class="pro">
-	    	    							<img src="{% static '' %}image/top_3.jpg"/>
-	    	    						</a>
-	    	    						<p class="box_glay">
-	    	    							<a href="" class="pro_text">
-	    	    								<span>意大利TVS进口磐石锅具套组</span>
-	    	    							</a>
-	    	    						</p>
-	    	    						<p class="p_num">
-	    	    							No.9195763
-	    	    						</p>
-	    	    						<div class="now_price">
-	    	    							<div class="price">
-	    	    								<span class="bigfont">
-	    	    									<span class="f_14">￥</span><span>999.00</span>
-	    	    								</span>
-	    	    								<span><del>￥2100.00</del></span>
-	    	    								<div class="zk">4.8折</div>
-	    	    							</div>
-	    	    						</div>
-	    	    					</li>
-	    	    					<li style="float: left;width: 224px;">
-	    	    						<div class="s">限时抢购</div>
-	    	    						<a href="" class="pro">
-	    	    							<img src="{% static '' %}image/top_4.jpg"/>
-	    	    						</a>
-	    	    						<p class="box_glay">
-	    	    							<a href="" class="pro_text">
-	    	    								<span>意大利TVS进口磐石锅具套组</span>
-	    	    							</a>
-	    	    						</p>
-	    	    						<p class="p_num">
-	    	    							No.9195763
-	    	    						</p>
-	    	    						<div class="now_price">
-	    	    							<div class="price">
-	    	    								<span class="bigfont">
-	    	    									<span class="f_14">￥</span><span>999.00</span>
-	    	    								</span>
-	    	    								<span><del>￥2100.00</del></span>
-	    	    								<div class="zk">4.8折</div>
-	    	    							</div>
-	    	    						</div>
-	    	    					</li>
-	    	    					<li style="float: left;width: 224px;">
-	    	    						<div class="s">限时抢购</div>
-	    	    						<a href="shop/tpl/iemt.html" class="pro">
-	    	    							<img src="{% static '' %}image/top_5.jpg"/>
-	    	    						</a>
-	    	    						<p class="box_glay">
-	    	    							<a href="" class="pro_text">
-	    	    								<span>意大利TVS进口磐石锅具套组</span>
-	    	    							</a>
-	    	    						</p>
-	    	    						<p class="p_num">
-	    	    							No.9195763
-	    	    						</p>
-	    	    						<div class="now_price">
-	    	    							<div class="price">
-	    	    								<span class="bigfont">
-	    	    									<span class="f_14">￥</span><span>999.00</span>
-	    	    								</span>
-	    	    								<span><del>￥2100.00</del></span>
-	    	    								<div class="zk">4.8折</div>
-	    	    							</div>
-	    	    						</div>
-	    	    					</li>
 	    	    				</ul>
 	    	    			</div>
 	    	    		</div>
@@ -415,35 +232,9 @@
 	        	    		</div>
 	        	    		<a href=""><img src="{% static '' %}image/top_2_1.jpg" style="width: 595px;height: 317px;"/></a>
 	        	    	</li>
-	        	    	<li style="margin-right: 0;">
-	        	    		<div class="djs_time">
-	        	    			还剩<span>10:50:22</span>
-	        	    		</div>
-	        	    		<a href=""><img src="{% static '' %}image/top_2_2.jpg" style="width: 595px;height: 317px;"/></a>
-	        	    	</li>
-	        	    	<li>
-	        	    		<div class="djs_time">
-	        	    			还剩<span>10:50:22</span>
-	        	    		</div>
-	        	    		<a href=""><img src="{% static '' %}image/top_2_3.jpg" style="width: 595px;height: 317px;"/></a>
-	        	    	</li>
-	        	    	<li style="margin-right: 0;">
-	        	    		<div class="djs_time">
-	        	    			还剩<span>10:50:22</span>
-	        	    		</div>
-	        	    		<a href=""><img src="{% static '' %}image/top_2_4.jpg" style="width: 595px;height: 317px;"/></a>
-	        	    	</li>
-	        	    	<li>
-	        	    		<div class="djs_time">
-	        	    			还剩<span>10:50:22</span>
-	        	    		</div>
-	        	    		<a href=""><img src="{% static '' %}image/top_2_5.jpg" style="width: 595px;height: 317px;"/></a>
-	        	    	</li>
 	        	    </ul>
 	        	</div>
 	        </div>
-	        <!--第二区-->
-	        <!--第三区-->
 	        <div class="jinpin_box">
 	        	<div class="qinha_title">
 	        		<div class="v_h2">
@@ -453,41 +244,8 @@
 	        	</div>
 	        	<ul class="jinpin_ul">
 	        		<li>
-	        			<a href=""><img src="{% static '' %}image/jinpin_1.png"/></a>
-	        			<a href="shop/tpl/go.html" target="_blank" class="ppsx_tc">
-                            <div class="ppsx_tc_xx">
-                                <div class="ppsx_tc_xx1">
-                                    <div class="ppsx_xx_zk"><span>79</span>元起</div>
-                                    <div class="ppsx_xx_qg">立即抢购</div>
-                                </div>
-                            </div>
-                        </a>
-	        		</li>
-	        		<li>
-	        			<a href=""><img src="{% static '' %}image/jinpin_2.png"/></a>
-	        			<a href="shop/tpl/go.html" target="_blank" class="ppsx_tc">
-                            <div class="ppsx_tc_xx">
-                                <div class="ppsx_tc_xx1">
-                                    <div class="ppsx_xx_zk"><span>79</span>元起</div>
-                                    <div class="ppsx_xx_qg">立即抢购</div>
-                                </div>
-                            </div>
-                        </a>
-	        		</li>
-	        		<li>
-	        			<a href=""><img src="{% static '' %}image/jinpin_3.png"/></a>
-	        			<a href="shop/tpl/go.html" target="_blank" class="ppsx_tc">
-                            <div class="ppsx_tc_xx">
-                                <div class="ppsx_tc_xx1">
-                                    <div class="ppsx_xx_zk"><span>79</span>元起</div>
-                                    <div class="ppsx_xx_qg">立即抢购</div>
-                                </div>
-                            </div>
-                        </a>
-	        		</li>
-	        		<li>
-	        			<a href=""><img src="{% static '' %}image/jinpin_4.png"/></a>
-	        			<a href="shop/tpl/go.html" target="_blank" class="ppsx_tc">
+	        			<a href="{% url 'goods:global_go' %}"><img src="{% static 'image/jinpin_1.png' %}"/></a>
+	        			<a href="{% url 'goods:global_go' %}" target="_blank" class="ppsx_tc">
                             <div class="ppsx_tc_xx">
                                 <div class="ppsx_tc_xx1">
                                     <div class="ppsx_xx_zk"><span>79</span>元起</div>
@@ -498,8 +256,6 @@
 	        		</li>
 	        	</ul>
 	        </div>
-	        <!--第三区-->
-	        <!--第四区-->
 	        <div class="day_box">
 	        	<div class="qinha_title">
 	        		<div class="v_h2">
@@ -511,149 +267,6 @@
 	        		<li>
 	        			<a href="" class="a_con_list">
 	        				<p class="p_img"><img src="{% static '' %}image/day_1.jpg"/></p>
-	        			</a>
-	        			<p class="p_title">
-	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-	        			</p>
-	        			<p class="p_p">
-	        				<span class="price1">￥<span>298.00</span></span>
-	        				<span class="price2"><del>￥398.00</del></span>
-	        				<a href="" class="gwc"></a>
-	        			</p>
-	        		</li>
-	        		<li>
-	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="{% static '' %}image/day_2.jpg"/></p>
-	        			</a>
-	        			<p class="p_title">
-	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-	        			</p>
-	        			<p class="p_p">
-	        				<span class="price1">￥<span>298.00</span></span>
-	        				<span class="price2"><del>￥398.00</del></span>
-	        				<a href="" class="gwc"></a>
-	        			</p>
-	        		</li>
-	        		<li>
-	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="{% static '' %}image/day_3.jpg"/></p>
-	        			</a>
-	        			<p class="p_title">
-	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-	        			</p>
-	        			<p class="p_p">
-	        				<span class="price1">￥<span>298.00</span></span>
-	        				<span class="price2"><del>￥398.00</del></span>
-	        				<a href="" class="gwc"></a>
-	        			</p>
-	        		</li>
-	        		<li>
-	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="{% static '' %}image/day_4.jpg"/></p>
-	        			</a>
-	        			<p class="p_title">
-	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-	        			</p>
-	        			<p class="p_p">
-	        				<span class="price1">￥<span>298.00</span></span>
-	        				<span class="price2"><del>￥398.00</del></span>
-	        				<a href="" class="gwc"></a>
-	        			</p>
-	        		</li>
-	        		<li>
-	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="{% static '' %}image/day_5.jpg"/></p>
-	        			</a>
-	        			<p class="p_title">
-	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-	        			</p>
-	        			<p class="p_p">
-	        				<span class="price1">￥<span>298.00</span></span>
-	        				<span class="price2"><del>￥398.00</del></span>
-	        				<a href="" class="gwc"></a>
-	        			</p>
-	        		</li>
-	        		<li>
-	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="{% static '' %}image/day_6.jpg"/></p>
-	        			</a>
-	        			<p class="p_title">
-	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-	        			</p>
-	        			<p class="p_p">
-	        				<span class="price1">￥<span>298.00</span></span>
-	        				<span class="price2"><del>￥398.00</del></span>
-	        				<a href="" class="gwc"></a>
-	        			</p>
-	        		</li>
-	        		<li>
-	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="{% static '' %}image/day_7.jpg"/></p>
-	        			</a>
-	        			<p class="p_title">
-	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-	        			</p>
-	        			<p class="p_p">
-	        				<span class="price1">￥<span>298.00</span></span>
-	        				<span class="price2"><del>￥398.00</del></span>
-	        				<a href="" class="gwc"></a>
-	        			</p>
-	        		</li>
-	        		<li>
-	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="{% static '' %}image/day_8.jpg"/></p>
-	        			</a>
-	        			<p class="p_title">
-	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-	        			</p>
-	        			<p class="p_p">
-	        				<span class="price1">￥<span>298.00</span></span>
-	        				<span class="price2"><del>￥398.00</del></span>
-	        				<a href="" class="gwc"></a>
-	        			</p>
-	        		</li>
-	        		<li>
-	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="{% static '' %}image/day_9.jpg"/></p>
-	        			</a>
-	        			<p class="p_title">
-	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-	        			</p>
-	        			<p class="p_p">
-	        				<span class="price1">￥<span>298.00</span></span>
-	        				<span class="price2"><del>￥398.00</del></span>
-	        				<a href="" class="gwc"></a>
-	        			</p>
-	        		</li>
-	        		<li>
-	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="{% static '' %}image/day_10.jpg"/></p>
-	        			</a>
-	        			<p class="p_title">
-	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-	        			</p>
-	        			<p class="p_p">
-	        				<span class="price1">￥<span>298.00</span></span>
-	        				<span class="price2"><del>￥398.00</del></span>
-	        				<a href="" class="gwc"></a>
-	        			</p>
-	        		</li>
-	        		<li>
-	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="{% static '' %}image/day_11.jpg"/></p>
-	        			</a>
-	        			<p class="p_title">
-	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-	        			</p>
-	        			<p class="p_p">
-	        				<span class="price1">￥<span>298.00</span></span>
-	        				<span class="price2"><del>￥398.00</del></span>
-	        				<a href="" class="gwc"></a>
-	        			</p>
-	        		</li>
-	        		<li>
-	        			<a href="" class="a_con_list">
-	        				<p class="p_img"><img src="{% static '' %}image/day_12.jpg"/></p>
 	        			</a>
 	        			<p class="p_title">
 	        				<span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）

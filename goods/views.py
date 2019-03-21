@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from  .models import BigType,GoodsType,GoodsInfo
 # Create your views here.
 #精选品牌
 def refined(request):
@@ -13,8 +13,9 @@ def global_go(request):
 def brand(request):
     return render(request, 'goods/brand.html')
 
-def list(request):
-    return render(request, 'goods/list.html')
+def list(request,id):
+    goods_list=GoodsInfo.objects.filter(type_id=id)
+    return render(request, 'goods/list.html',{'goods_list':goods_list})
 
 def goods_detail(request,id):
     return render(request,'goods/goods_detail.html')
