@@ -2,7 +2,7 @@ from django.shortcuts import render
 from CSHOP.md5 import encryption
 from .models import User,Car
 from goods.models import GoodsInfo,Detail
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse,HttpResponseRedirect,Http404
 from django.shortcuts import reverse
 from .common import check_user
 
@@ -44,6 +44,14 @@ def car(request):
     goods_list=Car.objects.filter(user_id=id)
     return render(request,'user/car.html',{'goods_list':goods_list})
 
+@check_user
+def del_car(request,id):
+    try:
+        c=Car.objects.get(id=id)
+        c.delete()
+        return HttpResponseRedirect(reverse('users:car'))
+    except:
+        raise Http404
 @check_user
 def add_car(request):
     user=request.session.get('id')
@@ -87,9 +95,24 @@ def userindex(request):
 
 #修改个人信息
 @check_user
-def change_message(request):
-    return render(request,'user/change_message.html')
+def message(request):
+    id=request.session.get('id')
+    user=User.objects.get(id=id)
+    return render(request, 'user/message.html',{'user':user})
 
+@check_user
+def change_message(request):
+    id = request.session.get('id')
+    username = request.POST.get('username')
+    sex=request.POST.get('sex')
+    birthday=request.POST.get('birthday')
+    u=User.objects.get(id=id)
+    u.username=username
+    u.sex=sex
+    if not u.birthday:
+        u.birthday=birthday
+    u.save()
+    return HttpResponseRedirect(reverse('users:message'))
 #退货中心
 @check_user
 def userrefund(request):

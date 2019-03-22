@@ -1,0 +1,70 @@
+{% extends 'base/user_base/user_base.html' %}
+{% load static %}
+
+{% block title %}
+		<title>个人资料</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/head.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'css/suercenter.css' %}" />
+{% endblock %}
+{% block content %}
+<div class="w1000 ClearFix margin_top20">
+			{% include 'base/user_base/user_left.html' %}
+			<div class="ur_right ClearFix">
+				<!--uer_top-->
+				<div class="ur_location">
+					<a href="">我的快乐购</a>
+					<span>&gt;</span>
+					<a class="a_cur">个人资料</a>
+				</div>
+				<!--uer_top-->
+				<div class="base_info">
+					<div class="info_top">
+						<div class="bi_l">
+							<div class="m_img">
+								<div class="hg_box">
+								<img src="{% static 'image/hg_img_0.png' %}">
+								</div>
+								<img src="{% static 'image/user_center_img4.jpg' %}">
+							</div>
+						</div>
+						<div class="bi_r">
+							<div class="m_username">用户名：<span>{{ user.username }}</span></div>
+						</div>
+					</div>
+					<form action="{% url 'users:change_message' %}" method="post">
+                        {% csrf_token %}
+						<div class="base_item">
+							<span class="label_name"><span>*</span>昵称：</span>
+							<input maxlength="20" id="member_truename" name="username" class="itxt" value="{{ user.username }}" type="text">
+							<div class="addr_msg">
+								<span id="error_member_truename"></span>
+							</div>
+						</div>
+						<div class="base_item">
+							<span class="label_name"><span>*</span>性别：</span>
+							<label class="s_radio"><input name="sex" value="0" type="radio" {% if user.sex == 0 %}checked{% endif %}>女</label>
+							<label class="s_radio"><input name="sex" value="1" type="radio" {% if user.sex == 1 %}checked{% endif %}>男</label>
+							<div class="addr_msg"><span id="error_member_sex"></span></div>
+						</div>
+						<div class="base_item">
+
+							<span class="label_name"><span>*</span>生日：</span>
+                            {% if user.birthday %}
+                                <input type="text" name="birthday" required value="{{ user.birthday }}" readonly>
+                                {% else %}
+                                 <input type="date" name="birthday" required >
+                            {% endif %}
+							<div class="addr_msg">
+								<span id="error_member_birthday"></span>
+							</div>
+						</div>
+						<div class=" base_btn">
+							<button type="submit"><a class="base_btn_save" id="profilesubmit">保存</a></button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+{% endblock %}

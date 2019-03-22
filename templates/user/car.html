@@ -30,30 +30,29 @@
 		<!--tip-->
 		<div class="public_b">
 			<div class="w1200">
-				<div class="car_no_goods">
-					<img src="{% static 'image/car_no_goods.jpg' %}"/>
-					<div class="no_goods">
+				<div class="car_no_goods" style="width:1000px">
+                     <img src="{% static 'image/car_no_goods.jpg' %}"/>
+					<div class="no_goods" style="width: 700px">
                     <table  class="table table-hover">
                         <tr>
                             <th>名称</th>
                             <th>样式</th>
                             <th>价钱</th>
                             <th>数量</th>
-                            <th>介绍</th>
+                            <th>发货地址</th>
+                            <th>操作</th>
                         </tr>
                     {% for goods in  goods_list %}
                         <tr>
-                        <td></td>
+                        <td>{{ goods.goods.name.goods_name}}</td>
+                        <td>{{ goods.goods.size}}/{{ goods.goods.color}}</td>
+                        <td>{{ goods.goods.goods_xprice}}</td>
                         <td>{{ goods.count}}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ goods.goods.name.goods_address}}</td>
+                        <td><a href="{% url 'users:del_car' goods.id %}">删除</a></td>
                         </tr>
                         {% empty %}
-                        <tr>
-                            <td colspan="5" style="text-align: center">暂无记录</td>
                             <p class="no_goods_t">亲，您的购物车空空如也，快去抢购心仪商品吧~</p>
-                        </tr>
                     {% endfor %}
                     </table>
 	                <p><a href="{% url 'users:car_path' %}" class="no_goods_buy">立即购买</a></p>
