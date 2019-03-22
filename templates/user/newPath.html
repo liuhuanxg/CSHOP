@@ -5,6 +5,15 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'css/head.css' %}" />
 		<link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}" />
 		<link rel="stylesheet" type="text/css" href="{% static 'css/suercenter.css' %}" />
+    <style>
+    td{
+        {#align:center;#}
+        {#valign:middle#}
+        text-align: center;
+        vertical-align: middle;
+
+    }
+    </style>
 {% endblock %}y>
 {% block content %}
 <div class="w1000 ClearFix margin_top20">
@@ -18,63 +27,16 @@
 				</div>
 				<div class="o_o_part">
 					<div class="part_h2">新增/修改收货地址</div>
-					<form action="" method="post">
+					<form action="{% url 'users:add_adress' %}" method="post">
+                        {% csrf_token %}
 						<input name="token_key_id" value="f8482678750b4eba89c440c1b7c8a0af" type="hidden">
 						<input name="form_submit" value="ok" type="hidden">
 						<div class="new_addr">
 							<div class="addr_item">
 								<span class="label_n"><span class="c_red">*</span>收货人：</span>
-								<input class="itxt" name="true_name" id="true_name" type="text">
+								<input class="itxt" name="name" id="true_name" type="text" placeholder="收货人">
 								<div class="addr_msg">
 									<span id="error_true_name"></span>
-								</div>
-							</div>
-							<div class="addr_item">
-
-								<span class="label_n"><span class="c_red">*</span>所在地区：</span>
-								<select class="city" name="statename" id="statename">
-            	           <option value="0">请选择省份</option>
-            	           					       <option value="P10">北京市</option>
-				           					       <option value="P11">上海市</option>
-				           					       <option value="P12">天津市</option>
-				           					       <option value="P13">河北省</option>
-				           					       <option value="P14">黑龙江省</option>
-				           					       <option value="P15">吉林省</option>
-				           					       <option value="P16">辽宁省</option>
-				           					       <option value="P17">内蒙古自治区</option>
-				           					       <option value="P18">山西省</option>
-				           					       <option value="P19">陕西省</option>
-				           					       <option value="P20">宁夏回族自治区</option>
-				           					       <option value="P21">甘肃省</option>
-				           					       <option value="P22">青海省</option>
-				           					       <option value="P23">新疆维吾尔自治区</option>
-				           					       <option value="P24">西藏自治区</option>
-				           					       <option value="P25">四川省</option>
-				           					       <option value="P26">河南省</option>
-				           					       <option value="P27">山东省</option>
-				           					       <option value="P28">江苏省</option>
-				           					       <option value="P29">安徽省</option>
-				           					       <option value="P30">湖北省</option>
-				           					       <option value="P31">湖南省</option>
-				           					       <option value="P32">贵州省</option>
-				           					       <option value="P33">云南省</option>
-				           					       <option value="P34">江西省</option>
-				           					       <option value="P35">浙江省</option>
-				           					       <option value="P36">福建省</option>
-				           					       <option value="P37">广东省</option>
-				           					       <option value="P38">广西壮族自治区</option>
-				           					       <option value="P39">海南省</option>
-				           					       <option value="P41">重庆市</option>
-				           					       <option value="P42">台湾省</option>
-				                                   </select>
-								<select class="city" name="city" id="city">
-				        <option value="0">请选择城市</option>			            </select>
-								<select class="city" name="county" id="county">				
-				        <option value="0">请选择区县</option>			            </select>
-								<select class="city noborder" name="town" id="town" style="display:none;">
-				        <option value="0">请选择乡镇</option>			            </select>
-								<div class="addr_msg">
-									<span id="error_statename"></span>
 								</div>
 							</div>
 							<div class="addr_item">
@@ -86,13 +48,13 @@
 							</div>
 							<div class="addr_item">
 								<span class="label_n"><span class="c_red">*</span>手机号码：</span>
-								<input placeholder="手机号码" name="tel_phone" class="itxt itxt_tel" id="tel_phone" type="text">
+								<input placeholder="手机号码" name="phone" class="itxt itxt_tel" id="tel_phone" type="text">
 								<div class="addr_msg">
 									<span id="error_tel_phone"></span>
 								</div>
 							</div>
 							<div class="addr_item btn_item">
-								<a href="javascript:;" id="addresssubmit" class="btn_addaddr">确定</a>
+								<button type="submit"><a id="addresssubmit" class="btn_addaddr">确定</a></button>
 							</div>
 						</div>
 					</form>
@@ -100,20 +62,30 @@
 				<!--pathend-->
 				<div class="addr_list">
 					<div class="addr_l_h2">
-						已保存收货地址（<span>0</span>）
+						已保存收货地址（<span>{{ address_list.count }}</span>）
 					</div>
 					<table class="order_table">
 						<thead class="theads">
 							<tr>
-								<td style="padding-left: 40px;">收货人</td>
-								<td>收货人地址</td>
-								<td>手机</td>
-								<td>操作</td>
+								<th style="padding-left: 40px;">收货人</th>
+								<th>收货人地址</th>
+								<th>手机</th>
+								<th>操作</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr class="tr-line">
+							    {% for address in address_list %}
+                                <td>{{ address.name }}</td>
+								<td>{{ address.address }}</td>
+								<td>{{ address.phone }}</td>
+								<td>
+                                    <a href="">删除</a>
+                                    <a href="">编辑</a>
+                                </td>
+                                {% empty %}
 								<td colspan="5">您还没有任务收货地址 </td>
+                                {% endfor %}
 							</tr>
 						</tbody>
 					</table>

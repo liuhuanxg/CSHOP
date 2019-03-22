@@ -18,4 +18,5 @@ urlpatterns = [
     path('userindex/',views.userindex,name='userindex'),
     path('message/',views.message,name='message'),
     path('userrefund/',views.userrefund,name='userrefund'),
+    path('add_adress/',views.add_adress,name='add_adress'),
 ]

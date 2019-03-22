@@ -21,3 +21,13 @@ class Car(models.Model):
     count=models.IntegerField(verbose_name='数量')
     user=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='买家')
     goods=models.ForeignKey(Detail,on_delete=models.CASCADE,verbose_name='商品')
+
+
+class Adress(models.Model):
+    class Meta:
+        verbose_name = '收货地址'
+        verbose_name_plural = '收货地址'
+    name = models.CharField('收货人', max_length=100)
+    address = models.CharField('收货地址', max_length=500)
+    phone=models.CharField('手机号码',max_length=20)
+    user=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='用户')

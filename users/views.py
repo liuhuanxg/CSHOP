@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from CSHOP.md5 import encryption
-from .models import User,Car
+from .models import User,Car,Adress
 from goods.models import GoodsInfo,Detail
 from django.http import HttpResponse,HttpResponseRedirect,Http404
 from django.shortcuts import reverse
@@ -83,7 +83,13 @@ def usercenter(request):
 
 @check_user
 def add_path(request):
-    return render(request,'user/newPath.html')
+    id=request.session.get('id')
+    address_list=Adress.objects.filter(user_id=id)
+    return render(request,'user/newPath.html',{'address_list':address_list})
+
+@check_user
+def  del_address(request):
+    id = request.session.get('id')
 
 @check_user
 def collect(request):
@@ -113,6 +119,23 @@ def change_message(request):
         u.birthday=birthday
     u.save()
     return HttpResponseRedirect(reverse('users:message'))
+
+
+@check_user
+def add_adress(request):
+    id=request.session.get('id')
+    name=request.POST.get('name')
+    address=request.POST.get('address')
+    phone=request.POST.get('phone')
+    try:
+        a=Adress.objects.filter(name=name,address=address,phone=phone,user_id=id)
+        if not a.exists():
+            a=Adress(name=name,address=address,phone=phone,user_id=id)
+            a.save()
+        return HttpResponseRedirect(reverse('users:add_path'))
+    except:
+        return HttpResponse('信息提交有误。')
+
 #退货中心
 @check_user
 def userrefund(request):
