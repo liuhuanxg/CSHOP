@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from  .models import BigType,GoodsType,GoodsInfo
-# Create your views here.
+from django.http import HttpResponseRedirect,Http404
+from  .models import BigType,GoodsType,GoodsInfo,Detail
+
 #精选品牌
 def refined(request):
     return render(request, 'goods/refined.html')
@@ -18,4 +19,10 @@ def list(request,id):
     return render(request, 'goods/list.html',{'goods_list':goods_list})
 
 def goods_detail(request,id):
-    return render(request,'goods/goods_detail.html')
+    goods=GoodsInfo.objects.filter(id=id)
+    if goods.exists():
+        goods=goods[0]
+        detail_list=Detail.objects.filter(name_id=id)
+        return render(request,'goods/goods_detail.html',{'goods':goods,'detail_list':detail_list})
+    else:
+        raise Http404

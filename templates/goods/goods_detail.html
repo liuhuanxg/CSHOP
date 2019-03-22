@@ -8,30 +8,20 @@
 		<script src="{% static '' %}js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 		    $(function(){
-		    	//添加一个点击事件
 		    	$(".color_ul li").click(function(){
-		    		//切换颜色
 		    		$(this).addClass("on").siblings().removeClass("on");
 		    	});
-		    	//添加商品数量
 		    	$(".wrap_input .btn-add").click(function(){
-		    		//获得input值
 		    		var y = $("#buy_num").val();
-		    		//转整
 		    		x = parseInt(y)+1;
-		    		$("#buy_num").val(x); 
-		    		
+		    		$("#buy_num").val(x);
 		    	});
-		    	//添加商品数量
 		    	$(".wrap_input .btn-reduce").click(function(){
-		    		//获得input值
 		    		var y = $("#buy_num").val();
-		    		//转整
 		    		x = parseInt(y)-1;
 		    		if(x>0){
 		    		   $("#buy_num").val(x); 
 		    		}
-		    		
 		    	});
 		    });
 		</script>
@@ -44,123 +34,60 @@
         <div class="con_top">
             <div class="con_top_l">
                 <div class="tab-w">
-                    <!--放大镜-->
                     <div class="divw">
                         <a href="">
                             <span class="zoomPad">
-                                <img src="{% static '' %}image/con_c_1.png"/>
-                                <div style="top: 148px; left: 153.5px; width: 180px; height: 180px; position: absolute; border-width: 1px; display: none;" class="zoomPup"></div>
-                                <div style="position: absolute; z-index: 500; left: 390px; top: 0px; display: none;" class="zoomWindow">
-                                    <div style="width: 380px;" class="zoomWrapper"><div style="width: 100%; position: absolute; display: block;" class="zoomWrapperTitle"></div>
-                                        <div style="width: 100%; height: 380px;" class="zoomWrapperImage"><img src="{% static '' %}image/con_c_2.png" style="position: absolute; border: 0px none; display: block; left: -5000px; top: 0px; width: 800px; height: 800px;">
-                                        </div>
-                                    </div>
-                                </div>
+                                <img src="{% static goods.goods_pic.url %}"/>
                             </span>
                         </a>
                     </div>
-                    <!--放大镜-->
-                    <!--tab,ajax-->
-                    <div class="box-tab">
-                        <div class="ul-w">
-                            <ul class="als-wrapper">
-                                <li class="als-item">
-                                    <a href="javascipt:;"><img src="{% static '' %}image/con_s_1.jpg" /></a>
-                                </li>
-                                <li class="als-item">
-                                    <a href="javascipt:;"><img src="{% static '' %}image/con_s_2.jpg" /></a>
-                                </li>
-                                <li class="als-item">
-                                    <a href="javascipt:;"><img src="{% static '' %}image/con_s_3.jpg" /></a>
-                                </li>
-                                <li class="als-item">
-                                    <a href="javascipt:;"><img src="{% static '' %}image/con_s_4.jpg" /></a>
-                                </li>
-                                <li class="als-item">
-                                    <a href="javascipt:;"><img src="{% static '' %}image/con_s_5.jpg" /></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="g_t_l_hd">
-                            <a href="javascript:;" class="btn l als-prev"></a>
-                            <a href="javascript:;" class="btn r als-next"></a>
-                        </div>
-                    </div>
-                    <!--tab,ajax-->
                 </div>
                 <div class="detail_share">
                     <div class="detail_sc">
-                        <i class="i_addsc"></i> 收藏商品
+                        <i class="i_addsc"></i><a href="" style="color: #94193f">收藏商品</a>
                     </div>
                 </div>
             </div>
             <div class="con_top_r">
                 <div class="detail_top">
-                    <h1 class="detail_tit">乐途女士经典跑鞋1+1时尚组（后跟杯） 粉红 225(35)</h1>
-                    <h2 class="detail_tit_md">复古鞋面，撞色设计，橡胶大底更耐磨。</h2>
+                    <h1 class="detail_tit">{{ goods.goods_name }}</h1>
+                    <h2 class="detail_tit_md">{{ goods.goods_info }}</h2>
                     <div class="price_wrap">
                         <div class="detail_price">
                             <span class="price_now">
                                 <b class="em_sign">￥</b>
-                                298.00
+                                {{ goods.xprice }}
                             </span>
                         </div>
-                        <div class="d_bh">编号：9197795</div>
+                        <div class="d_bh">原价：￥<s>{{ goods.oprice }}</s></div>
                     </div>
                     <div class="detail_freight">
-                        <span class="pop_tit ">运费：</span>
-                        <span id="freight" class="pop_black">包邮</span>
+                        <span class="pop_tit ">地址：</span>
+                        <span id="freight" class="pop_black">{{ goods.goods_address }}</span>
                     </div>
                     <div class="detail_color">
                         <div class="model_wrap color_wrap">
-                            <span class="pop_tit">颜色：</span>
+                            <span class="pop_tit">型号：</span>
                             <ul class="color_ul">
-                                <li class="no_kc on">
-                                    <a href="javascript:void(0)" data-param="{valid:51008, key:1}">粉红</a>
-                                    <b></b>
-                                </li>
+                                {% for detail in detail_list%}
                                 <li class="no_kc">
-                                    <a href="javascript:void(0)" data-param="{valid:51014, key:1}">暗紫色</a>
+                                    <a href="javascript:void(0)" data-param="{valid:51008, key:1}">{{ detail.color }}/{{ detail.size }}</a>
                                     <b></b>
                                 </li>
-                            </ul>
-                        </div>
-                        <div class="model_wrap color_wrap">
-                            <span class="pop_tit">尺码：</span>
-                            <ul class="color_ul">
-                                <li class="no_kc on">
-                                    <a href="javascript:void(0)" data-param="{valid:51009, key:15}">225(35)</a>
-                                    <b></b>
-                                </li>
-                                <li class="no_kc">
-                                    <a href="javascript:void(0)" data-param="{valid:51010, key:15}">230(36)</a>
-                                    <b></b>
-                                </li>
-                                <li class="no_kc">
-                                    <a href="javascript:void(0)" data-param="{valid:51011, key:15}">235(37)</a>
-                                    <b></b>
-                                </li>
-                                <li class="no_kc">
-                                    <a href="javascript:void(0)" data-param="{valid:51012, key:15}">240(38)</a>
-                                    <b></b>
-                                </li>
-                                <li class="no_kc">
-                                    <a href="javascript:void(0)" data-param="{valid:51013, key:15}">245(39)</a>
-                                    <b></b>
-                                </li>
+                                {% endfor %}
                             </ul>
                         </div>
                         <div class="model_wrap count_wrap">
                             <span class="pop_tit">数量：</span>
                             <div class="wrap_input">
-                                <a href="javascript://" data-param="0" class="btn-add">-</a>
-                                <a href="javascript://" data-param="0" class="btn-reduce">+</a>
+                                <a href="javascript://" data-param="0" class="btn-add">+</a>
+                                <a href="javascript://" data-param="0" class="btn-reduce">-</a>
                                 <input value="1" id="buy_num" class="text" onkeyup="this.value=this.value.replace(/\D/g, '');">
                             </div>
                         </div>
                         <div class="model_wrap">
                             <div class="model_submilt">
-                                <div class="btn_goods_remind">到货提醒</div>
+                                <div class="btn_goods_remind">加入购物车</div>
                             </div>
                             <div class="detail_ewm">
                                 <p class="ewm_bg_img"></p>
@@ -186,12 +113,6 @@
                             <li><a href="javascript:;">用户评价</a></li>
                             <li><a href="javascript:;">为您推荐</a></li>
                         </ul>
-                        <div class="fix_add_car">
-                            <div class="db_price">
-                                <em>¥</em>298.00
-                            </div>
-                            <a class="fixed_add_car" href="javascript:;">加入购物车</a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -349,6 +270,7 @@
                 </div>
             </div>
             </div>
+
             <div class="recommend_box">
                 <div class="detail_lists">
                     <div class="d_h2">
@@ -412,7 +334,6 @@
                 </div>
             </div>
         </div>
-        <!--展示区域end-->
     </div>
 </div>
 {% endblock %}

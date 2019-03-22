@@ -32,6 +32,9 @@ def register(request):
         return HttpResponseRedirect('/users/login')
     return render(request,'user/register.html')
 
+def logout(request):
+    del request.session['user']
+    return HttpResponseRedirect('/')
 
 def car(request):
     return render(request,'user/car.html')

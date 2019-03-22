@@ -5,9 +5,14 @@
 					<div class="h_t_l">
 						<div class="login_l">
 						    <span>欢迎来到快乐购!</span>
+                            {% if request.session.user %}
+                                 <a href="{% url 'users:userindex' %}">欢迎：{{ request.session.user }}</a>
+                                <a class="a_login" href="{% url 'users:logout' %}">[注销]</a>
+                            {% else %}
 						    <a class="a_login" href="{% url 'users:login' %}">[登录]</a>
 						    <span class="line"></span>
 						    <a class="" href="{% url 'users:register' %}">[注册]</a>
+                            {% endif %}
 						</div>
 					</div>
 					<div class="h_t_r">
