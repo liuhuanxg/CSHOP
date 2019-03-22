@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from CSHOP.md5 import encryption
-from .models import User
+from .models import User,Car
+from goods.models import GoodsInfo,Detail
 from django.http import HttpResponse,HttpResponseRedirect
-# Create your views here.
+from django.shortcuts import reverse
+from .common import check_user
 
 def login(request):
     if request.method == 'POST':
@@ -19,7 +21,6 @@ def login(request):
             return HttpResponse('账号或密码有误。')
     return render(request, 'user/login.html')
 
-
 def register(request):
     if request.method=='POST':
         username=request.POST.get('username')
@@ -32,33 +33,67 @@ def register(request):
         return HttpResponseRedirect('/users/login')
     return render(request,'user/register.html')
 
+@check_user
 def logout(request):
     del request.session['user']
     return HttpResponseRedirect('/')
 
+@check_user
 def car(request):
-    return render(request,'user/car.html')
+    id=request.session.get('id')
+    goods_list=Car.objects.filter(user_id=id)
+    return render(request,'user/car.html',{'goods_list':goods_list})
 
+@check_user
+def add_car(request):
+    user=request.session.get('id')
+    goods_id=request.POST.get('size')
+    count=request.POST.get('count')
+    goods = Detail.objects.filter(id=goods_id, num__gte=count, goods_count__gte=count)
+    if goods.exists():
+        c = Car.objects.filter(user_id=user, goods_id=goods_id)
+        if c.exists():
+            c.update(count=count)
+        else:
+            c = Car(count=count, user_id=user, goods_id=goods_id)
+            c.save()
+        return HttpResponseRedirect(reverse('users:car'))
+    else:
+        return HttpResponse('商品数量有误。')
+
+@check_user
 def car_path(request):
     return render(request, 'user/car_path.html')
 
+@check_user
 def truesubmit(request):
     return render(request,'user/truesubmit.html')
 
+@check_user
 def usercenter(request):
     return render(request,'user/usercenter.html')
 
+@check_user
 def add_path(request):
     return render(request,'user/newPath.html')
 
+@check_user
 def collect(request):
     return render(request,'user/collect.html')
 
+@check_user
 def userindex(request):
     return render(request,'user/userindex.html')
 
+#修改个人信息
+@check_user
 def change_message(request):
     return render(request,'user/change_message.html')
 
+#退货中心
+@check_user
 def userrefund(request):
     return render(request,'user/userrefund.html')
+
+def test(request):
+    return render(request,'user/test.html')

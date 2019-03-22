@@ -1,8 +1,7 @@
 from django.db import models
+from goods.models import Detail
+from django.contrib.auth.models import User as Auth_User
 
-# Create your models here.
-
-#用户信息表
 class User(models.Model):
     class Meta:
         verbose_name = '买家信息'
@@ -12,3 +11,11 @@ class User(models.Model):
     is_activate = models.BooleanField('能否登录',default=1)
     def __str__(self):
         return  self.username
+
+class Car(models.Model):
+    class Meta:
+        verbose_name = '购物车'
+        verbose_name_plural = '购物车'
+    count=models.IntegerField(verbose_name='数量')
+    user=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='买家')
+    goods=models.ForeignKey(Detail,on_delete=models.CASCADE,verbose_name='商品')

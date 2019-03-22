@@ -32,6 +32,7 @@
 	<div class="con_content">
         <!--提交区域-->
         <div class="con_top">
+            <!--收藏-->
             <div class="con_top_l">
                 <div class="tab-w">
                     <div class="divw">
@@ -48,6 +49,9 @@
                     </div>
                 </div>
             </div>
+            <!--加购-->
+            <form action="{% url 'users:add_car' %}" method="post">
+            {% csrf_token %}
             <div class="con_top_r">
                 <div class="detail_top">
                     <h1 class="detail_tit">{{ goods.goods_name }}</h1>
@@ -67,11 +71,15 @@
                     </div>
                     <div class="detail_color">
                         <div class="model_wrap color_wrap">
-                            <span class="pop_tit">型号：</span>
+                            <span class="pop_tit">样式：</span>
                             <ul class="color_ul">
                                 {% for detail in detail_list%}
                                 <li class="no_kc">
-                                    <a href="javascript:void(0)" data-param="{valid:51008, key:1}">{{ detail.color }}/{{ detail.size }}</a>
+                                    <a href="javascript:void(0)" data-param="{valid:51008, key:1}">
+                                    <label><input name="size" type="radio" value="{{ detail.id }}" required/>
+                                        {{ detail.color }}/{{ detail.size }}
+                                    </label>
+                                    </a>
                                     <b></b>
                                 </li>
                                 {% endfor %}
@@ -82,12 +90,12 @@
                             <div class="wrap_input">
                                 <a href="javascript://" data-param="0" class="btn-add">+</a>
                                 <a href="javascript://" data-param="0" class="btn-reduce">-</a>
-                                <input value="1" id="buy_num" class="text" onkeyup="this.value=this.value.replace(/\D/g, '');">
+                                <input name="count" value="1" id="buy_num" class="text" onkeyup="this.value=this.value.replace(/\D/g, '');" >
                             </div>
                         </div>
                         <div class="model_wrap">
                             <div class="model_submilt">
-                                <div class="btn_goods_remind">加入购物车</div>
+                                <button type="submit"><div class="btn_goods_remind">加入购物车</div></button>
                             </div>
                             <div class="detail_ewm">
                                 <p class="ewm_bg_img"></p>
@@ -100,8 +108,10 @@
                     </div>
                 </div>
             </div>
+            </form>
         </div>
         <!--提交区域end-->
+
         <!--展示区域-->
         <div class="con_tab">
             <div class="con_nav">
@@ -125,18 +135,18 @@
                     </div>
                     <div class="detail_con">
                         <div style="margin: auto;">
-                            <p><img src="{% static '' %}image/d_1.jpg" /></p>
+                            <p><img src="{% static 'image/d_1.jpg' %}" /></p>
                         </div>
                         <div style="margin: auto;">
-                            <img src="{% static '' %}image/d_2.jpg" />
-                            <img src="{% static '' %}image/d_3.jpg" />
-                            <img src="{% static '' %}image/d_4.jpg" />
-                            <img src="{% static '' %}image/d_5.jpg" />
-                            <img src="{% static '' %}image/d_6.jpg" />
-                            <img src="{% static '' %}image/d_7.jpg" />
+                            <img src="{% static 'image/d_2.jpg' %}" />
+                            <img src="{% static 'image/d_3.jpg' %}" />
+                            <img src="{% static 'image/d_4.jpg' %}" />
+                            <img src="{% static 'image/d_5.jpg' %}" />
+                            <img src="{% static 'image/d_6.jpg' %}" />
+                            <img src="{% static 'image/d_7.jpg' %}" />
                         </div>
                         <div style="margin: auto;">
-                            <p><img src="{% static '' %}image/d_8.jpg" /></p>
+                            <p><img src="{% static 'image/d_8.jpg' %}" /></p>
                         </div>
                     </div>
                 </div>

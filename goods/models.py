@@ -48,3 +48,4 @@ class Detail(models.Model):
     goods_oprice = models.FloatField(verbose_name='商品原价')
     goods_xprice = models.FloatField(verbose_name='商品现价')
     goods_count = models.IntegerField(verbose_name='库存', default=0)
+    num=models.IntegerField(verbose_name='限购数量',default=3)

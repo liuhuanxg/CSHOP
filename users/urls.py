@@ -7,6 +7,7 @@ urlpatterns = [
     path('register/',views.register,name='register'),
     path('logout/',views.logout,name='logout'),
     path('car/',views.car,name='car'),
+    path('add_car/',views.add_car,name='add_car'),
     path('car_path/',views.car_path,name='car_path'),
     path('truesubmit/',views.truesubmit,name='truesubmit'),
     path('usercenter/',views.usercenter,name='usercenter'),
@@ -15,4 +16,5 @@ urlpatterns = [
     path('userindex/',views.userindex,name='userindex'),
     path('change_message/',views.change_message,name='change_message'),
     path('userrefund/',views.userrefund,name='userrefund'),
+    path('test/',views.test,name='test'),
 ]
