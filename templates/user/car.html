@@ -5,6 +5,7 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'css/head.css' %}"/>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/go.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}"/>
         <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
         <script src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
         <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
@@ -66,9 +67,27 @@
                                 <li class="on">猜你喜欢</li>
                             </ul>
 						</div>
-						<div class="detail_l_con4">
-							<div class="noguess">暂无商品向您推荐</div>
-						</div>
+                        <ul class="day_goods">
+                    {% for goods in other_list %}
+	        		<li>
+                    <a href="{% url 'goods:goods_detail' goods.id %}" class="a_con_list">
+                     <p class="p_img"><img src="{% static goods.goods_pic.url %}"/></p>
+	        			<p class="p_title">
+	        				<span>
+                            【{% widthratio goods.xprice goods.oprice 100 as width %}
+                                {% widthratio width 10 1 as width %}
+                                {{ width |floatformat:1 }}折】
+                            </span>{{ goods.goods_name }}
+	        			</p>
+                         </a>
+	        			<p class="p_p">
+	        				<span class="price1">￥<span>{{ goods.xprice }}</span></span>
+	        				<span class="price2"><del>￥{{ goods.oprice }}</del></span>
+	        				<a href="{% url 'users:add_car' %}?g_id={{ goods.id }}" class="gwc"></a>
+	        			</p>
+	        		</li>
+                    {% endfor %}
+	        	</ul>
 					</div>
 				</div>
 				<!--为你推荐-->

@@ -5,7 +5,7 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'css/head.css' %}" />
 		<link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}" />
 		<link rel="stylesheet" type="text/css" href="{% static 'css/iemt.css' %}" />
-		<script src="{% static '' %}js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="{% static 'js/jquery-1.7.2.min.js' %}" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 		    $(function(){
 		    	$(".color_ul li").click(function(){
@@ -45,7 +45,7 @@
                 </div>
                 <div class="detail_share">
                     <div class="detail_sc">
-                        <i class="i_addsc"></i><a href="" style="color: #94193f">收藏商品</a>
+                        <i class="i_addsc"></i><a href="{% url 'users:collect' %}?g_id={{ goods.id }}" style="color: #94193f">收藏商品</a>
                     </div>
                 </div>
             </div>

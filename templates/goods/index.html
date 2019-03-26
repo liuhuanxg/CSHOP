@@ -279,10 +279,9 @@
 	        			<p class="p_p">
 	        				<span class="price1">￥<span>{{ goods.xprice }}</span></span>
 	        				<span class="price2"><del>￥{{ goods.oprice }}</del></span>
-	        				<a href="" class="gwc"></a>
+	        				<a href="{% url 'users:add_car' %}?g_id={{ goods.id }}" class="gwc"></a>
 	        			</p>
 	        		</li>
-
                     {% endfor %}
 	        	</ul>
 	        </div>

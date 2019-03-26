@@ -6,6 +6,9 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'css/head.css' %}"/>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/suercenter.css' %}"/>
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+        <script src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
 {% endblock %}
 	{% block content %}
 		<div class="w1000 ClearFix margin_top20">
@@ -17,8 +20,28 @@
 					<span>&gt;</span>
 					<a class="a_cur">我的收藏</a>
 				</div>
-				<!--uer_top-->
-				<div class="no_data"><img src="{% static 'image/no_data.png' %}"><span>您还没有收藏任何商品!</span></div>
+				 <table  class="table table-hover">
+                        <tr>
+                            <th>名称</th>
+                            <th>样式</th>
+                            <th>价钱</th>
+                            <th>发货地址</th>
+                            <th>操作</th>
+                        </tr>
+                    {% for goods in  collect_list %}
+                        <tr>
+                        <td>{{ goods.goods.name.goods_name}}</td>
+                        <td>{{ goods.goods.size}}/{{ goods.goods.color}}</td>
+                        <td>{{ goods.goods.goods_xprice}}</td>
+                        <td>{{ goods.goods.name.goods_address}}</td>
+                        <td><a href="{% url 'users:del_collect' goods.id %}">删除</a></td>
+                        </tr>
+                        {% empty %}
+                           <tr>
+                        <th colspan="5" style="text-align: center">您还没有收藏任何商品。</th>
+                        </tr>
+                    {% endfor %}
+                    </table>
 			</div>
 	    </div>
 	    <!--底部end-->

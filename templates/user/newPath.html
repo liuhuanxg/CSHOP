@@ -27,6 +27,38 @@
 				</div>
 				<div class="o_o_part">
 					<div class="part_h2">新增/修改收货地址</div>
+                    {% if address %}
+                        <form action="{% url 'users:modify_address' address.id %}" method="post">
+                        {% csrf_token %}
+						<input name="token_key_id" value="f8482678750b4eba89c440c1b7c8a0af" type="hidden">
+						<div class="new_addr">
+							<div class="addr_item">
+								<span class="label_n"><span class="c_red">*</span>收货人：</span>
+								<input class="itxt" name="name" id="true_name" type="text" placeholder="收货人" value="{{ address.name }}">
+								<div class="addr_msg">
+									<span id="error_true_name"></span>
+								</div>
+							</div>
+							<div class="addr_item">
+								<span class="label_n"><span class="c_red">*</span>详细地址：</span>
+								<input placeholder="详细地址" name="address" class="itxt itxtaddr" id="address" type="text" value="{{ address.address }}">
+								<div class="addr_msg">
+									<span id="error_address"></span>
+								</div>
+							</div>
+							<div class="addr_item">
+								<span class="label_n"><span class="c_red">*</span>手机号码：</span>
+								<input placeholder="手机号码" name="phone" class="itxt itxt_tel" id="tel_phone" type="text" value="{{ address.phone }}">
+								<div class="addr_msg">
+									<span id="error_tel_phone"></span>
+								</div>
+							</div>
+							<div class="addr_item btn_item">
+								<button type="submit"><a id="addresssubmit" class="btn_addaddr">确定</a></button>
+							</div>
+						</div>
+					</form>
+				    {% else %}
 					<form action="{% url 'users:add_adress' %}" method="post">
                         {% csrf_token %}
 						<input name="token_key_id" value="f8482678750b4eba89c440c1b7c8a0af" type="hidden">
@@ -58,6 +90,7 @@
 							</div>
 						</div>
 					</form>
+                    {% endif %}
 				</div>
 				<!--pathend-->
 				<div class="addr_list">
@@ -74,19 +107,19 @@
 							</tr>
 						</thead>
 						<tbody>
+                        {% for address in address_list %}
 							<tr class="tr-line">
-							    {% for address in address_list %}
                                 <td>{{ address.name }}</td>
 								<td>{{ address.address }}</td>
 								<td>{{ address.phone }}</td>
 								<td>
-                                    <a href="">删除</a>
-                                    <a href="">编辑</a>
+                                    <a href="{% url 'users:del_address' address.id %}">删除</a>
+                                    <a href="?g_id={{ address.id }}">编辑</a>
                                 </td>
-                                {% empty %}
+							</tr>
+                         {% empty %}
 								<td colspan="5">您还没有任务收货地址 </td>
                                 {% endfor %}
-							</tr>
 						</tbody>
 					</table>
 				</div>

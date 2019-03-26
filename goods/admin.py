@@ -36,7 +36,7 @@ class GoodsInfoAdmin(admin.ModelAdmin):
 	list_per_page = 50
 	exclude = ('seller',)
 	fieldsets = (
-		("基本信息", {'fields': ['goods_name','goods_method','goods_pic','goods_address','type']}),
+		("基本信息", {'fields': ['goods_name','goods_method','goods_pic','goods_address','type','oprice','xprice']}),
 		("介绍", {'fields': ['goods_info', 'goods_content']})
 	)
 	def save_model(self, request, obj, form, change):

@@ -23,7 +23,7 @@ class Car(models.Model):
     goods=models.ForeignKey(Detail,on_delete=models.CASCADE,verbose_name='商品')
 
 
-class Adress(models.Model):
+class Address(models.Model):
     class Meta:
         verbose_name = '收货地址'
         verbose_name_plural = '收货地址'
@@ -31,3 +31,10 @@ class Adress(models.Model):
     address = models.CharField('收货地址', max_length=500)
     phone=models.CharField('手机号码',max_length=20)
     user=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='用户')
+
+class Collection(models.Model):
+    class Meta:
+        verbose_name = '收藏'
+        verbose_name_plural = '收藏'
+    user=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='买家')
+    goods=models.ForeignKey(Detail,on_delete=models.CASCADE,verbose_name='商品')

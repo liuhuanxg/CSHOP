@@ -3,8 +3,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="{% static 'js/jquery-2.1.1.min.js' %}" type="text/javascript" charset="utf-8"></script>
     {% block title %}
     {% endblock %}
+
 </head>
 <body>
 <!--顶部公用-->
@@ -66,7 +68,7 @@
 	    		    <div class="h_c_right">
 	    		    	<a href="{% url 'users:car' %}" class="h_c_r_car">
 	    		    		<b class="b_car1"></b>
-	    		    		<span><i class="ci-count">0</i>我的购物车</span>
+	    		    		<span><i class="ci-count" id="user_id"></i>我的购物车</span>
 	    		    		<b class="b_car2"></b>
 	    		    	</a>
 	    		    </div>
@@ -104,5 +106,20 @@
 
     {% block left %}
     {% endblock %}
+    <script type="text/javascript">
+       $(function(){
+            $.ajax({
+                  url: "{% url 'users:check_count' %}",
+                  type:'get',
+                  dataType:'json',
+
+                  success: function(data) {
+                      if(data.status==1){
+                          $('#user_id').html(data.msg)
+                      }
+                  }
+            })
+       })
+    </script>
 </body>
 </html>
