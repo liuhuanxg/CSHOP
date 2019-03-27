@@ -6,6 +6,7 @@ from django.http import HttpResponse,HttpResponseRedirect,Http404,JsonResponse
 from django.shortcuts import reverse
 from .common import check_user
 import json
+from PIL import Image,ImageDraw,ImageFont
 
 def login(request):
     if request.method == 'POST':
@@ -64,6 +65,7 @@ def del_car(request,id):
         return HttpResponseRedirect(reverse('users:car'))
     except:
         raise Http404
+
 @check_user
 def add_car(request):
     user=request.session.get('id')
@@ -138,7 +140,6 @@ def check_count(request):
     result['msg']=count
     return HttpResponse(json.dumps(result))
 
-
 @check_user
 def collect(request):
     id=request.session.get('id')
@@ -157,11 +158,8 @@ def del_collect(request,id):
         return HttpResponseRedirect(reverse('users:collect'))
     except:
         raise Http404
-@check_user
-def userindex(request):
-    return render(request,'user/userindex.html')
 
-#修改个人信息
+
 @check_user
 def message(request):
     id=request.session.get('id')
@@ -204,5 +202,7 @@ def add_adress(request):
 def userrefund(request):
     return render(request,'user/userrefund.html')
 
-def test(request):
-    return render(request,'user/test.html')
+
+@check_user
+def userindex(request):
+    return render(request,'user/userindex.html')
