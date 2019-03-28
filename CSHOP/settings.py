@@ -143,3 +143,4 @@ MEDIA_ROOT=os.path.join(BASE_DIR,"static")
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
 
+SESSION_SERIALIZER  = 'django.contrib.sessions.serializers.PickleSerializer'

@@ -53,7 +53,7 @@
                         <td><a href="{% url 'users:del_car' goods.id %}">删除</a></td>
                         </tr>
                         {% empty %}
-                        <th colspan="5" style="text-align: center">亲，您的购物车空空如也，快去抢购心仪商品吧~。</th>
+                        <th colspan="5" style="text-align: center"><a href="/">亲，您的购物车空空如也，快去抢购心仪商品吧~。</a></th>
                     {% endfor %}
                     </table>
 	                <p><a href="{% url 'users:car_path' %}" class="no_goods_buy">立即购买</a></p>

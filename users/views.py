@@ -10,6 +10,10 @@ import time
 from seller.models import Orders,Order_info
 from PIL import Image,ImageDraw,ImageFont
 from django.utils import timezone
+from alipay.aop.api.AlipayClientConfig import AlipayClientConfig
+from alipay.aop.api.DefaultAlipayClient import DefaultAlipayClient
+from alipay.aop.api.domain.AlipayTradePagePayModel import AlipayTradePagePayModel
+from alipay.aop.api.request.AlipayTradePagePayRequest import AlipayTradePagePayRequest
 
 def login(request):
     if request.method == 'POST':
@@ -107,6 +111,8 @@ def truesubmit(request):
     goods_list=Car.objects.filter(user_id=user_id)
     money=0
     seller=0
+    if not goods_list.exists():
+        return HttpResponse('您尚未选择商品。')
     for goods in goods_list:
         g=Detail.objects.get(id=goods.goods_id)
         money += g.goods_xprice * goods.count
@@ -117,14 +123,57 @@ def truesubmit(request):
     address=Address.objects.filter(id=address_id,user_id=user_id)
     if not address.exists():
         raise Http404
-    print('11111111')
     t = str(time.time()).split('.')
-    order = t[0] + t[1]
+    orders = t[0] + t[1]
     address=address[0]
-    o = Orders(order=order, money=money, address=address.address,contacts=address.name,phone=address.phone,seller_id=seller,users_id=user_id)
+    o = Orders(order=orders, money=money, address=address.address,contacts=address.name,phone=address.phone,seller_id=seller,users_id=user_id)
     o.save()
-    print(timezone.now())
-    return render(request,'user/truesubmit.html')
+    for goods in goods_list:
+        g=Detail.objects.get(id=goods.goods_id)
+        order=Order_info(number=goods.count,price=g.goods_xprice,goods_id=g.id,order_id=o.id)
+        order.save()
+        Detail.objects.filter(id=goods.goods_id).update(goods_count=g.goods_count-goods.count)
+    goods_list.delete()
+    return render(request,'user/truesubmit.html',{'orders':orders,'money':money})
+
+# @check_user
+def pay(request):
+    order=request.POST.get('orders')
+    user=request.session.get('id')
+    o=Orders.objects.filter(order=order,users_id=user)
+    print(order,user)
+    if not o.exists():
+        return HttpResponse('订单不存在。')
+    alipay_client_config = AlipayClientConfig()
+    alipay_client_config.server_url = 'https://openapi.alipaydev.com/gateway.do'
+    alipay_client_config.app_id = '2016092100561600'
+    alipay_client_config.app_private_key = 'MIIEpQIBAAKCAQEAxr2mbz2s8RigfJPxqYFht3hjtbEY9k/7C5BNvATGJRXSpI+9XmSCHG58OnYoZvYLgQoSLKRrE/z7ZeDL8gCVRuLWmEUHRYGEeBQ3IraaHqfHewP39yyoZ3M0Z9gIoK+yRIsgMcK4vdYwQGaw+MRypIEmqIC+AUeWOStYVDzK/TtcJPq8NZN+Gc2hzm94NE4F1fE+OFXVDPmoKJyljRsD2NYRz2iV6nuvRZ4inU31lpy6wNWwgqAZi6tIKMr1ElOFWH59ReCtkTyY0N2u4Z2TopiZgpCnZ3tQAoSEOslyefIH4w/I/dm2zxH3FF7bRuEp5jkueem5gfzmarGRClNp0wIDAQABAoIBABTfaDJ4tMghgQF0fEYEK6IcR8SWU/vSjJg7UJ61laXhc90Kp6XZQnz/8ZYmQLoHj0+/IgeEQSa5RCIACQtimkr2mfkmDsxy/Nmrrdq8eNVNY7r8wLc5/nnW9KMPYmCV81AVmI0BWWu+qhSpdF68Kxox4kCCPPJfdVyNu9olBGCyAtPKp2J/+lD/qCG9uxo7ltT5L4nsoR9gciLqce4B4VImHroUatDcOrDeMniRhNHkNa2YRkV4ddncAHtexAjA8yesTO1bO1D/TyLOHRnNElTBSDJbJaVzifgHM0OmcJUhgdbjJhGEUh+/atMjHLmMiZxEwoUsn4Ctcb8/NT541CECgYEA8Ao8+LIYzydlmaV4ns7GmclkfDXp3ZzVUeoQLCPGQtVeSZjiwIeB4G0bcO3d4JA0c1g5dfYJUA7YhOaOcQzMkkUnJu7oMBX2STYohX2012AdZPUz1/UWnckt5zvZoRYK0KjVQ06zLo2gWuk+dr+KVYQB1XRh777QxLhXK19V8LECgYEA0/RzoZ/+KvMTrFDEFiJep/I3avk6kohx8JUJyJQlus0cxnUdBv3rp3RkElJYCnvvtwhILWRuMovRTKxgUU7fXGIZY3HH7Zw0V3wpsOzPefNsVHCsg9kmpHqIEbabdJKAtnNIginMgEs0l5K2LKPbRK1CETRG3GwRcsoCdFV7A8MCgYEAyWB9eFLJd3jgxr7Ia8qjWL9ZOs9sLMx3Nip8eNtmaAli+bF2gfjs36AJRnt4Cf5Q0newdSL8+xoJUa2u0G7hbNDxILuLNVQnc5Io+pzUS1/KKTmAzetClwsBJJ3UXU0Fs7oAeGAc+LA+WCaXjb3xSv7dHvttclmOAYt5LdzkV3ECgYEAqkr6aH4yaPGZ+dV+ZkZBBPDAA8uwerDz0pb8IFKfKcHIf87yfn6eypDiIjJUmD/Rbp5R116chzH8/Hx2en1DSmdq/JIbTtY026Ffoc3yOIoSnJlWkixzNq1YC9tKdVOL5IslU6cfrmg+HhX7FkykTD5kGYyF7m1Ja4/QfwV6658CgYEAq/YNAIzrLkQxQeyS26bbCf7+FT6jLGmKgxyReODIOPKk7S+vaZWbyHX14AW9cDBeOfsiIQobfkIHMRJtVqe5TC49lHh08zAX610SvXSzIkpeTIMfUVKwhr0xfOqCMSEHKNG6mGbTie0AvhGCHYl2ptAWZot9ugNcgwdTu43Nyag='
+    alipay_client_config.alipay_public_key = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA8OsmAJsaykPLzLIN//XnymU4s13kPE95EyOvZFq8TMPKJtsQ/f7eQB72wYAi3NarGT7RwebfJoAyeaM0KJsYNFqAodVHwpPRSemj8mwBtzEGGSyOT4Ilbv4KOz+HAsOkaLuQQ2ZGD1m7CCrgZCtxJDVqbd4xigSgMwrTFZYywoT0Sswv0oPV2TMl1tg+F7VUuvQpEvIn6qCQfzXa15eX9/P8OknvP9NSl3jOvDcpMliC2KvbfkNF9Qx9FEgtRlfnZdDItgmUj34VmBph+LUrAyV3lZjLpbFMhKlTBUeAbH72JPUKifXTXKsmbAl0n6cPaJQgb3zd+cfW7equoMhIEQIDAQAB'
+    client = DefaultAlipayClient(alipay_client_config=alipay_client_config)
+
+    o=o[0]
+    order_list=Order_info.objects.filter(order_id=o.id)
+    name=''
+    for i in order_list:
+        name = name+' '+Detail.objects.get(id=i.goods_id).name.goods_name
+
+    model = AlipayTradePagePayModel()
+
+    model.out_trade_no = o.order
+    model.total_amount = str(o.money)
+    model.subject = "快乐购-" + name
+    model.body = name
+    model.product_code = "FAST_INSTANT_TRADE_PAY"
+    request = AlipayTradePagePayRequest(biz_model=model)
+    request.return_url = 'http://127.0.0.1:8000/users/return_url'
+    response = client.page_execute(request, http_method="GET")
+    return HttpResponseRedirect(response)
+
+@check_user
+def return_url(request):
+    order = request.GET.get('out_trade_no')
+    result = Orders.objects.filter(order=order).update(pay_status=1,pay_time=timezone.datetime.now())
+    return HttpResponseRedirect('/')
 
 @check_user
 def usercenter(request):

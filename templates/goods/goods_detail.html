@@ -76,9 +76,10 @@
                                 {% for detail in detail_list%}
                                 <li class="no_kc">
                                     <a href="javascript:void(0)" data-param="{valid:51008, key:1}">
-                                    <label><input name="size" type="radio" value="{{ detail.id }}" required/>
+                                        <label for="size_{{ detail.id }}">
+                                    <input name="size" type="radio" value="{{ detail.id }}" required id="size_{{ detail.id }}"/>
                                         {{ detail.color }}/{{ detail.size }}
-                                    </label>
+                                            </label>
                                     </a>
                                     <b></b>
                                 </li>
