@@ -6,7 +6,10 @@ from django.http import HttpResponse,HttpResponseRedirect,Http404,JsonResponse
 from django.shortcuts import reverse
 from .common import check_user
 import json
+import time
+from seller.models import Orders,Order_info
 from PIL import Image,ImageDraw,ImageFont
+from django.utils import timezone
 
 def login(request):
     if request.method == 'POST':
@@ -46,15 +49,16 @@ def car(request):
     goods_list=Car.objects.filter(user_id=id)
     list=[]
     list1=[]
+    list2=[]
     for i in goods_list:
         list.append(i.goods_id)
-    other_list=GoodsInfo.objects.filter(id__in=list)
-    print('other_list:',other_list)
+    other_list=Detail.objects.filter(id__in=list)
     for j in other_list:
-        list1.append(j.type_id)
-    print('list1:',list1)
-    other_list = GoodsInfo.objects.filter(type_id__in=list1).exclude(id__in=list)
-    print('other_list:',other_list)
+        list1.append(j.name_id)
+    other_list = GoodsInfo.objects.filter(id__in=list1)
+    for k in other_list:
+        list2.append(k.type_id)
+    other_list = GoodsInfo.objects.filter(type_id__in=list2).exclude(id__in=list1)
     return render(request,'user/car.html',{'goods_list':goods_list,'other_list':other_list})
 
 @check_user
@@ -71,13 +75,14 @@ def add_car(request):
     user=request.session.get('id')
     goods_id = request.GET.get('g_id')
     if goods_id:
-        goods = Detail.objects.filter(id=goods_id)
+        goods = Detail.objects.filter(name=goods_id)
         count=1
     else:
         goods_id=request.POST.get('size')
         count=request.POST.get('count')
         goods = Detail.objects.filter(id=goods_id, num__gte=count, goods_count__gte=count)
     if goods.exists():
+        goods_id=goods[0].id
         c = Car.objects.filter(user_id=user, goods_id=goods_id)
         if c.exists():
             c.update(count=count)
@@ -90,10 +95,35 @@ def add_car(request):
 
 @check_user
 def car_path(request):
-    return render(request, 'user/car_path.html')
+    user=request.session.get('id')
+    goods_list=Car.objects.filter(user_id=user)
+    address_list = Address.objects.filter(user_id=user)
+    return render(request, 'user/car_path.html',{'address_list':address_list,'goods_list':goods_list})
 
 @check_user
 def truesubmit(request):
+    user_id=request.session.get('id')
+    address_id=request.POST.get('address')
+    goods_list=Car.objects.filter(user_id=user_id)
+    money=0
+    seller=0
+    for goods in goods_list:
+        g=Detail.objects.get(id=goods.goods_id)
+        money += g.goods_xprice * goods.count
+        seller=GoodsInfo.objects.get(id=g.name_id).seller_id
+        if g.num < goods.count:
+            return HttpResponse('商品数量超过了库存，请重新选择。')
+
+    address=Address.objects.filter(id=address_id,user_id=user_id)
+    if not address.exists():
+        raise Http404
+    print('11111111')
+    t = str(time.time()).split('.')
+    order = t[0] + t[1]
+    address=address[0]
+    o = Orders(order=order, money=money, address=address.address,contacts=address.name,phone=address.phone,seller_id=seller,users_id=user_id)
+    o.save()
+    print(timezone.now())
     return render(request,'user/truesubmit.html')
 
 @check_user
