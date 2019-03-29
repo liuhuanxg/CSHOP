@@ -22,6 +22,7 @@ urlpatterns = [
     path('userrefund/',views.userrefund,name='userrefund'),
     path('add_adress/',views.add_adress,name='add_adress'),
     path('del_address/<int:id>',views.del_address,name='del_address'),
+    path('receive_goods/<int:id>',views.receive_goods,name='receive_goods'),
     path('modify_address/<int:id>',views.modify_address,name='modify_address'),
     path('pay/',views.pay,name='pay'),
     path('return_url/',views.return_url,name='return_url'),

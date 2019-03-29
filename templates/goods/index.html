@@ -75,7 +75,7 @@
                             <ul>
                                 {% for type in type_list %}
                                     {% if type.type_id == big_type.id %}
-                                <li><a href="{% url 'goods:list' type.id %}" target="_blank">{{ type.type_name }}</a></li>
+                                <li><a href="{% url 'goods:list' %}?s_id={{ type.id }}" target="_blank">{{ type.type_name }}</a></li>
                                     {% endif %}
                                 {% endfor %}
                             </ul>

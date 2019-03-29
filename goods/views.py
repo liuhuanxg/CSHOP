@@ -14,8 +14,9 @@ def global_go(request):
 def brand(request):
     return render(request, 'goods/brand.html')
 
-def list(request,id):
-    goods_list=GoodsInfo.objects.filter(type_id=id)
+def list(request):
+    s_id=request.GET.get('s_id')
+    goods_list=GoodsInfo.objects.filter(type_id=s_id)
     return render(request, 'goods/list.html',{'goods_list':goods_list})
 
 def goods_detail(request,id):

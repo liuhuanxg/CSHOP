@@ -39,7 +39,7 @@
 							<a href="" class="more_qqg_order">查看全球购订单&gt;&gt;</a>
 						</div>
 					</div>
-					<table class="order_table">
+					<table class="order_table" style="font-size: 15px">
 						<thead class="thead">
 							<tr>
 								<td class="padding_40">
@@ -64,55 +64,85 @@
 									</div>
 								</td>
 								<td>订单金额</td>
-								<td>交易状态</td>
-								<td>交易操作</td>
+								<td>商品属性</td>
+								<td>付款状态</td>
+								<td>发货状态</td>
+								<td>收货状态</td>
+								<td>评价状态</td>
 							</tr>
 						</thead>
 						<tbody>
-							<!--单号 时间-->
+                        {% for order in pagedata %}
 							<tr class="tr_top">
-								<td colspan="6">
-									<span class="number">订单号：<a target="_blank" href="">340517399129797757</a></span>
-									<span class="dealtime" title="下单时间">下单时间：2016-05-24 09:58:49</span>
+								<td colspan="7">
+									<span class="number">订单号：<a target="_blank" href="">{{ order.order }}</a></span>
+									<span class="dealtime" title="下单时间">下单时间：{{ order.add_time }}</span>
 								</td>
 							</tr>
-							<!--单号 时间-->
-							<!--订单商品-->
-							<tr class="tr_bd">
-								<td class="goods-item">
+                            {% for info in kwargs %}
+                                {% if info.order_id == order.id%}
+							    <tr class="tr_bd">
+								<td class="goods-number" style="width: 200px">
 									<div class="p-img">
-										<a href="" target="_blank">
-											<img class="" src="{% static '' %}image/true_1.jpg" title="" height="60" width="60">
+										<a href="{% url 'goods:goods_detail' info.goods.name.id%}" target="_blank">
+											<img class="" src="{% static info.goods.name.goods_pic.url %}" title="" height="60" width="60">
 										</a>
 									</div>
 									<div class="p-msg">
 										<div class="p-name">
-											<a href="" class="a-link" target="_blank" title="">娜露可 迷迭香防晒3支装</a>
+											<a href="{% url 'goods:goods_detail' info.goods.name.id%}" class="a-link" target="_blank" title="">{{ info.goods}}</a>
 										</div>
 									</div>
 								</td>
 								<td>
-									<div class="goods_price">￥199.00</div>
+									<div class="goods-number"><span>￥{% widthratio info.price 1 info.number%}</span></div>
 								</td>
 								<td>
-									<div class="goods-number">x1</div>
+									<div class="goods-number">{{ info.goods.size }}/{{ info.goods.color }}</div>
+								</td>
+                                <td rowspan="1">
+                                    {% if order.pay_status == 0 %}
+									<div class="amount"><span>尚未付款</span></div>
+                                        {% else%}
+									<div class="amount"><span>已付款</span></div>
+                                     {% endif %}
 								</td>
 								<td rowspan="1">
-									<div class="amount"><span>￥199.00</span><br>（免运费）<br>在线支付</div>
+                                    {% if order.send_status == 0 %}
+									<div class="amount"><span>尚未发货</span></div>
+                                        {% else%}
+									<div class="amount"><span>已发货</span></div>
+                                     {% endif %}
 								</td>
-								<td rowspan="1">
-									<div class="status">
-										<span class="order-status"><span style="color:#999">已取消</span></span><br>
-										<a href="" target="_blank">订单详情</a>
-									</div>
+							    <td rowspan="1">
+                                {% if order.receive_status == 0%}
+									<div class="amount"><span>尚未收货</span>
+                                        {% if order.send_status == 1 %}<a href="{% url 'users:receive_goods' order.id%}">点击收货</a>{% endif %}
+                                    </div>
+                                     {% else%}
+									<div class="amount"><span>已收货</span></div>
+                                {% endif %}
 								</td>
-								<td rowspan="1">
-									<div class="operate">
-										<p><a href="javascript:void(0);" class="btn-del"><i class="icon-trash"></i>删除</a></p>
-									</div>
+                                <td rowspan="1">
+									   {% if order.comment_status == 0%}
+									<div class="amount"><span>尚未评价</span>
+                                        {% if order.receive_status == 1 %}<a href="">点击评价</a>{% endif %}
+                                    </div>
+                                     {% else%}
+									<div class="amount"><span>评价</span></div>
+                                {% endif %}
 								</td>
 							</tr>
-							<!--订单商品-->
+                                {% endif %}
+                                {% endfor %}
+
+			            {% empty %}
+                           <tr class="tr_bd">
+								<th colspan="5" style="">
+									暂无订单。
+								</th>
+							</tr>
+                        {% endfor %}
 						</tbody>
 					</table>
 				</div>
@@ -121,18 +151,28 @@
 				<div class="page_list margin_top20">
 					<div class="page_r">
 						<ul>
+                            {% if pagedata.has_previous %}
 							<li class="pre a_btn un">
-								<span><b><</b>上一页</span>
+                                <a href="?p={{ p|add:-1}}"><span><b><</b>上一页</span></a>
 							</li>
-							<li class="a_p_num">
-								<span>1</span>
+                             {% endif %}
+                            {% for  i in page_list %}
+                                {% if p == i %}
+                                    <li class="a_p_num">
+                                        <span>{{ p }}</span>
+                                    </li>
+                                    {% else %}
+                                    <li class="a_p_num">
+                                   <a href="?p={{ i }}"><span>{{ i }}</span></a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        {% if pagedata.has_next %}
+                            <li class="next a_btn">
+								<a href="?p={{ p|add:1}}"><span>下一页<b>></b></span></a>
 							</li>
-							<li>
-								<a href=""><span>2</span></a>
-							</li>
-							<li class="next a_btn">
-								<a href=""><span>下一页<b>></b></span></a>
-							</li>
+                        {% endif %}
+
 						</ul>
 					</div>
 				</div>
