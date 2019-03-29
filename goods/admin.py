@@ -54,6 +54,7 @@ class DetailAdmin(admin.ModelAdmin):
 	search_fields = ('name','goods_count')
 	list_per_page = 50
 
+
 from django.contrib.auth.models import User,Permission
 @admin.register(Permission)
 class PermissionAdmin(admin.ModelAdmin):

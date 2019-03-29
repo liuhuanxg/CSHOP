@@ -1,21 +1,27 @@
 from typing import List, Any
-
+from django.utils import timezone
 from django.contrib import admin
 from .models import Order_info,Orders
 from django import forms
 
 class Order_infoInline(admin.TabularInline):
+	def get_readonly_fields(self, request, obj=None):
+		if obj:
+			return ['goods','number','price','order']
+		else:
+			return []
 	model = Order_info
-	extra = 3
+	extra = 0
 
 @admin.register(Orders)
 class OrdersAdmin(admin.ModelAdmin):
 	def get_queryset(self, request):
 		qs = super(OrdersAdmin, self).get_queryset(request)
-		if request.user.is_superuser:
-			return qs
+		# if request.user.is_superuser:
+		# 	return qs
 		return qs.filter(seller=request.user.id)
-	list_display = ('order','pay_status','send_status','receive_status','comment_status','money')
+	list_display = ('order','pay','send','receive','comment','money')
+	list_display_links = ('order','pay','send','receive','comment')
 	search_fields = ('order','pay_status','send_status','receive_status','comment_status','money')
 	ordering=('pay_status','send_status','receive_status','comment_status','-add_time')
 	date_hierarchy = 'add_time'
@@ -24,15 +30,13 @@ class OrdersAdmin(admin.ModelAdmin):
 	exclude = ('seller',)
 	def get_readonly_fields(self, request, obj=None):
 		if obj:
-			return ['order','pay_status','receive_status','comment_status','money','seller','add_time','address','contacts','phone']
+			if obj.send_status ==0:
+				return ['order','pay_status','receive_status','comment_status','money','seller','add_time','contacts','phone','address','send_time','receive_time','users','pay_time']
+			else:
+				return ['send_status','order', 'pay_status', 'receive_status', 'comment_status', 'money', 'seller', 'add_time', 'contacts', 'phone','address', 'send_time', 'receive_time', 'users','pay_time']
 		else:
 			return ['send_status']
-
-
-@admin.register(Order_info)
-class Order_infoAdmin(admin.ModelAdmin):
-	list_display = ('goods','number','price','order')
-	search_fields = ('goods',)
-	list_per_page = 50
-
+	def save_model(self, request, obj, form, change):
+		obj.send_time = timezone.datetime.now()
+		super(OrdersAdmin, self).save_model(request, obj, form, change)
 

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.html import format_html
 
 class Orders(models.Model):
     class Meta:
@@ -22,6 +23,56 @@ class Orders(models.Model):
     users = models.ForeignKey('users.User',on_delete=models.CASCADE,verbose_name='买家')
     def __str__(self):
         return self.order
+    def pay(self):
+        if self.pay_status == 0:
+            color_code = 'blue'
+            return format_html(
+                '<span style="color:{};">{}</span>',color_code,'尚未支付',
+            )
+        else:
+            color_code='green'
+            return format_html(
+                '<span style="color:{};">{}</span>',color_code,'已经支付',
+            )
+    pay.short_description = u'支付状态'
+
+    def send(self):
+        if self.send_status == 0:
+            color_code = 'blue'
+            return format_html(
+                '<span style="color:{};">{}</span>',color_code,'尚未发货',
+            )
+        else:
+            color_code='green'
+            return format_html(
+                '<span style="color:{};">{}</span>',color_code,'已经发货',
+            )
+    send.short_description = u'发货状态'
+    def receive(self):
+        if self.receive_status == 0:
+            color_code = 'blue'
+            return format_html(
+                '<span style="color:{};">{}</span>',color_code,'尚未收货',
+            )
+        else:
+            color_code='green'
+            return format_html(
+                '<span style="color:{};">{}</span>',color_code,'已经收货',
+            )
+    receive.short_description = u'发货状态'
+    def comment(self):
+        if self.comment_status == 0:
+            color_code = 'blue'
+            return format_html(
+                '<span style="color:{};">{}</span>',color_code,'尚未评价',
+            )
+        else:
+            color_code='green'
+            return format_html(
+                '<span style="color:{};">{}</span>',color_code,'已经评价',
+            )
+    comment.short_description = u'评价状态'
+
 
 class Order_info(models.Model):
     class Meta:
