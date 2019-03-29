@@ -144,3 +144,88 @@ MEDIA_ROOT=os.path.join(BASE_DIR,"static")
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
 
 SESSION_SERIALIZER  = 'django.contrib.sessions.serializers.PickleSerializer'
+
+if DEBUG:
+    DEBUG_LOG_BASE_PATH = os.path.join(BASE_DIR, 'logs')
+else:
+    DEBUG_LOG_BASE_PATH = os.path.join(BASE_DIR, 'logs')
+
+if not os.path.isdir(DEBUG_LOG_BASE_PATH):
+    os.mkdir(DEBUG_LOG_BASE_PATH)
+
+LOGGING={
+    'version':1,
+    'disable_existing_loggers':False,
+    'formatters':{
+        'standard':{
+            'format':'%(asctime)s %(levelname)s %(name)s %(module)s %(funcName)s %(message)s'
+        },
+        'simple':{
+            'format':'%(levelname)s %(module)s %(asctime)s %(message)s'
+        }
+    },
+    'filters':{
+    },
+    'handlers':{
+        'default':{
+            'level':'DEBUG',
+            'class':'logging.FileHandler',
+            'filename':os.path.join(DEBUG_LOG_BASE_PATH,'all.log'),
+            'formatter':'standard',
+        },
+        'error':{
+            'level':'ERROR',
+            'class':'logging.FileHandler',
+            'filename':os.path.join(DEBUG_LOG_BASE_PATH,'error.log'),
+            'formatter':'standard',
+        },
+        'console':{
+            'level':'DEBUG',
+            'class':'logging.StreamHandler',
+            'formatter':'standard',
+        },
+        'request':{
+            'level':'INFO',
+            'class':'logging.FileHandler',
+            'filename':os.path.join(DEBUG_LOG_BASE_PATH,'request.log'),
+            'formatter':'standard',
+        },
+        'db':{
+            'level':'DEBUG',
+            'class':'logging.FileHandler',
+            'filename':os.path.join(DEBUG_LOG_BASE_PATH,'db.log'),
+        },
+    },
+    'loggers':{
+        'django.request':{
+            'handlers':['error','console'],
+            'level':'ERROR',
+            'propagate':False,
+        },
+        'django.db.backends':{
+            'handlers':['db','error'],
+            'level':'DEBUG',
+            'propagate':False
+        },
+        'seller':{
+            'handlers':['default','error','console'],
+            'level':'DEBUG',
+            'propagate':False
+        },
+        'users':{
+            'handlers':['default','error','console'],
+            'level':'DEBUG',
+            'propagate':False
+        },
+        'goods':{
+            'handlers':['default','error','console'],
+            'level':'DEBUG',
+            'propagate':False
+        },
+        'home':{
+            'handlers':['default','error','console'],
+            'level':'DEBUG',
+            'propagate':False
+        }
+    }
+}

@@ -1,0 +1,2 @@
+kill -9 `lsof -i:5000 -t`
+python manage.py runserver 0.0.0.0:5000
