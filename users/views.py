@@ -165,7 +165,7 @@ def pay(request):
 	model.body = name
 	model.product_code = "FAST_INSTANT_TRADE_PAY"
 	request = AlipayTradePagePayRequest(biz_model=model)
-	request.return_url = 'http://127.0.0.1:8000/users/return_url'
+	request.return_url = 'http://39.105.195.67:80/users/return_url'
 	response = client.page_execute(request, http_method="GET")
 	return HttpResponseRedirect(response)
 

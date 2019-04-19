@@ -62,5 +62,5 @@ class PermissionAdmin(admin.ModelAdmin):
 	ordering=('id',)
 	search_fields = ('name', 'codename')
 
-admin.site.site_header='快乐购后台管理'
-admin.site.site_title='快乐购后台管理'
+admin.site.site_header='管理员页面'
+admin.site.site_title='管理员页面'
