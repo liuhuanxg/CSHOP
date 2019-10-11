@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.html import format_html
+# from seller.models import Orders
 
 class BigType(models.Model):
     class Meta:
@@ -35,6 +37,12 @@ class GoodsInfo(models.Model):
     xprice = models.FloatField(verbose_name='商品现价',default='0')
     type=models.ForeignKey(GoodsType,null=True,on_delete=models.DO_NOTHING,verbose_name=('类别'))
     seller=models.ForeignKey(User,default=1,on_delete=models.DO_NOTHING,verbose_name=('卖家'))
+    def evaluation(self):
+        color_code = 'green'
+        return format_html(
+            '<a style="color:{};" href="/seller/show_evaluation/{}">{}</a>', color_code,self.id,'查看评价',
+        )
+    evaluation.short_description = u'支付状态'
     def __str__(self):
         return self.goods_name
 
@@ -51,3 +59,18 @@ class Detail(models.Model):
     num=models.IntegerField(verbose_name='限购数量',default=3)
     def __str__(self):
         return GoodsInfo.objects.get(id=self.name_id).goods_name
+
+#商品评价表
+class Goods_evaluation(models.Model):
+    class Meta:
+        verbose_name = "商品评价"
+        verbose_name_plural = "商品评价"
+    order = models.ForeignKey("seller.Orders",default=1,on_delete=models.CASCADE,verbose_name="订单ID")
+    goods = models.ForeignKey("GoodsInfo",default=1,on_delete=models.CASCADE,verbose_name="商品ID")
+    user = models.ForeignKey("users.User",default=1,on_delete=models.CASCADE,verbose_name="用户ID")
+    content = models.CharField(max_length=500,verbose_name="评价内容")
+    goods_score = models.IntegerField(verbose_name="商品评分")
+    service_score = models.IntegerField(verbose_name="服务评分")
+
+class test(models.Model):
+    name = models.CharField(max_length=100)

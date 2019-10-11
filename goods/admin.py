@@ -31,7 +31,7 @@ class GoodsInfoAdmin(admin.ModelAdmin):
 			return qs
 		return qs.filter(seller=request.user.id)
 	inlines = [DetailInline,]
-	list_display = ('goods_name','xprice','oprice','goods_method','goods_address')
+	list_display = ('goods_name','xprice','oprice','goods_method','goods_address','evaluation')
 	search_fields = ('goods_name',)
 	list_per_page = 50
 	exclude = ('seller',)

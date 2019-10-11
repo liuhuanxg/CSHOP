@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>季度——销售额饼状图</title>
+    <script src="{% static 'js/echarts.min.js' %}"></script>
+    <script src="{% static 'js/jquery-1.7.2.min.js' %}"></script>
+</head>
+<body>
+<form action="">
+    <input type="hidden" value="{{ id }}" id="j_id">
+</form>
+<div style="width: 1000px;height:800px;border:1px solid red" id="box"></div>
+<script>
+    var mychart = echarts.init(document.getElementById("box"));
+    var j_id = $('#j_id').val();
+    console.log(j_id);
+    function f(){
+      var data = $.ajax({
+          url:"/seller/re_order",
+          data:{"j_id":j_id},
+          dataType:"json",
+          success:function (result) {
+              if(result.flag==1){
+                  data=result.data
+                  fn(data)
+              }
+          }
+      })   
+    };
+    f();
+    function fn(data){
+        console.log(data.data1),
+        console.log(data.data2),
+        console.log(data.data3),
+        option = {
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        x: 'left',
+        data:data.data1
+    },
+    series: [
+        {
+            name:'销售额占比',
+            type:'pie',
+            selectedMode: 'single',
+            radius: [0, '30%'],
+
+            label: {
+                normal: {
+                    position: 'inner'
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data:data.data2
+        },
+        {
+            name:'访问来源',
+            type:'pie',
+            radius: ['40%', '55%'],
+            label: {
+                normal: {
+                    formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                    backgroundColor: '#eee',
+                    borderColor: '#aaa',
+                    borderWidth: 1,
+                    borderRadius: 4,
+
+                    rich: {
+                        a: {
+                            color: '#999',
+                            lineHeight: 22,
+                            align: 'center'
+                        },
+                        hr: {
+                            borderColor: '#aaa',
+                            width: '100%',
+                            borderWidth: 0.5,
+                            height: 0
+                        },
+                        b: {
+                            fontSize: 16,
+                            lineHeight: 33
+                        },
+                        per: {
+                            color: '#eee',
+                            backgroundColor: '#334455',
+                            padding: [2, 4],
+                            borderRadius: 2
+                        }
+                    }
+                }
+            },
+            data:data.data3
+        }
+    ]
+};
+        mychart.setOption(option)
+    }
+
+</script>
+</body>
+</html>

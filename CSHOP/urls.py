@@ -15,6 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.conf.urls import url
+from rest_framework import routers,serializers,viewsets
+
+
 
 urlpatterns = [
     path('',include('home.urls')),
@@ -22,4 +26,5 @@ urlpatterns = [
     path('users/',include('users.urls',namespace='users')),
     path('seller/',include('seller.urls',namespace='seller')),
     path('goods/',include('goods.urls',namespace='goods')),
+    url(r"^api-auth/",include('rest_framework.urls'))
 ]

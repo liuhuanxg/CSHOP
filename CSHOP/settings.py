@@ -41,7 +41,13 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'seller.apps.SellerConfig',
     'goods.apps.GoodsConfig',
+    'rest_framework',
 ]
+REST_FRAMEWORK={
+    'DEFAULT_PERMISSION_CLASSES':[
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,7 +80,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'CSHOP.wsgi.application'
 
 
-# Database
+# Databasetemplate
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
@@ -84,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'cshop',
         'USER': 'root',
-        'PASSWORD': '426425',
+        'PASSWORD': 'root',
         'HOST': 'localhost',  # 也可以写ip地址
         'PORT': '3306'
     }
@@ -129,6 +135,7 @@ USE_TZ = True
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE=True  # 关闭浏览器 cookie 失效
 
+LOGIN_URL = '/admin'
 
 STATIC_URL = '/static/'
 

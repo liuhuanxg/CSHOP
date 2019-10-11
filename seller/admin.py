@@ -1,8 +1,9 @@
 from typing import List, Any
 from django.utils import timezone
 from django.contrib import admin
-from .models import Order_info,Orders
+from .models import Order_info,Orders,Quarter,Month,Province,City,Month1,Jidu,Order
 from django import forms
+
 
 class Order_infoInline(admin.TabularInline):
 	def get_readonly_fields(self, request, obj=None):
@@ -17,8 +18,8 @@ class Order_infoInline(admin.TabularInline):
 class OrdersAdmin(admin.ModelAdmin):
 	def get_queryset(self, request):
 		qs = super(OrdersAdmin, self).get_queryset(request)
-		# if request.user.is_superuser:
-		# 	return qs
+		if request.user.is_superuser:
+			return qs
 		return qs.filter(seller=request.user.id)
 	list_display = ('order','pay','send','receive','comment','money')
 	list_display_links = ('order','pay','send','receive','comment')
@@ -40,3 +41,16 @@ class OrdersAdmin(admin.ModelAdmin):
 		obj.send_time = timezone.datetime.now()
 		super(OrdersAdmin, self).save_model(request, obj, form, change)
 
+@admin.register(Quarter)
+class QuarterAdmin(admin.ModelAdmin):
+	list_display = ('name','detail',"all_quarter")
+	list_display_links = ('name',)
+
+@admin.register(Province)
+class ProviceAdmin(admin.ModelAdmin):
+	list_display = ('name', 'detail', "all_quarter")
+	list_display_links = ('name',)
+
+@admin.register(Jidu)
+class JiduAdmin(admin.ModelAdmin):
+	list_display = ('name',"detail")

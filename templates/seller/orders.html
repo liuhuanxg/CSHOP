@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>价格销量柱状图</title>
+    <script src="{% static 'js/jquery-1.7.2.min.js' %}"></script>
+    <script src="{% static 'js/echarts.min.js' %}"></script>
+    <style>
+        #main{width:600px;height:400px;}
+    </style>
+</head>
+<body>
+    <div id="main"></div>
+    <script>
+        empty_charts=document.getElementById("main");
+        //基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById("main"),'light');
+        function f() {
+            var data=$.ajax({
+                url:"{% url 'seller:orders/api/'%}",
+                type:"GET",
+                dataType:'json',
+                success:function (result) {
+                    if(result.flag){
+                        var money = result.money;
+                        var count = result.count;
+                        makeCharts(money,count);
+                    }
+                    else {empty_charts.innerHTML="暂无数据"}
+                }
+            })
+        }
+        f();
+        function makeCharts(money,count) {
+             //指定图表的配置项和数据
+            var option = {
+                //表名
+                title:{text:"价格-销量柱状图"},
+                tooltip:{},
+                legend:{data:["价格销量"]},
+                xAxis:{data:money},
+                yAxis:{},
+                series:[{name:"销量", type:"bar", data:count}]
+            };
+            //使用刚指定的配置项和数据显示图表
+            myChart.setOption(option)
+        }
+    </script>
+
+</body>
+</html>

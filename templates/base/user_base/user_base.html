@@ -26,6 +26,7 @@
 	    		    <div class="h_c_search">
 	    			    <div class="search_input">
 	    			    	<form action="" method="post">
+                                {% csrf_token %}
 	    			    		<input type="text" style="color: rgb(102, 102, 102);" name="keyword" class="text_search" placeholder="limu 胶原蛋白" value="" />
 	    			    		<input type="submit" class="btn_search" value="搜索"/>
 	    			    	</form>

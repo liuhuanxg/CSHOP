@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>各省份营业额</title>
+    <script src="{% static 'js/jquery-1.7.2.min.js' %}"></script>
+    <script src="{% static 'js/echarts.min.js' %}"></script>
+    <script src="{% static 'MyJs/city_volume.js' %}"></script>
+</head>
+<body>
+<form action="">
+    <input type="hidden" id="c_id" value="{{ c_id }}">
+</form>
+    <div style="width: 800px;height: 800px;" id="main"></div>
+
+</body>
+</html>

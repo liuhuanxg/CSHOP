@@ -288,17 +288,18 @@
 
 	    </div>
 
-	    <div id="nav" class="search_fixed">
-	    	<div class="w1200">
-	    		<div class="s_fixed_l"><img src="{% static 'image/search_logo.png' %}"/></div>
-	    		<div class="s_fixed_r">
-	    			<form action="" method="post">
-                        <input placeholder="lumi 胶原蛋白" autocomplete="off" class="txt_f_sb" name="keyword" type="text">
-                        <input value="搜索" class="f_btn_search" style="cursor:pointer" type="button">
-	    			</form>
-	    		</div>
-	    	</div>
-	    </div>
+{#	    <div id="nav" class="search_fixed">#}
+{#	    	<div class="w1200">#}
+{#	    		<div class="s_fixed_l"><img src="{% static 'image/search_logo.png' %}"/></div>#}
+{#	    		<div class="s_fixed_r">#}
+{#	    			<form action="" method="get" action="{% url 'goods:brand' %}">#}
+{#                         {% csrf_token %}#}
+{#                        <input placeholder="lumi 胶原蛋白" autocomplete="off" class="txt_f_sb" name="keyword" type="text">#}
+{#                        <input value="搜索" class="f_btn_search" style="cursor:pointer" type="submit">#}
+{#	    			</form>#}
+{#	    		</div>#}
+{#	    	</div>#}
+{#	    </div>#}
 
 {% endblock %}
 
